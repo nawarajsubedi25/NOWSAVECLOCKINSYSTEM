@@ -9,6 +9,7 @@ include('session.php');
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script src="js/showhide.js"></script>
+	<script src="js/time.js"></script>
 </head>
 <body>
 <div id="profile">
@@ -49,31 +50,31 @@ setInterval(GetClock,1000);
 </div>
 <form action="" method="POST">
 <div>
-    <button type="button" name="click" class="click" id="clockinn" onclick="return getData()"> Clock IN</button>
+    <button  type="button" name="click" class="click" id="clockinn"> Clock IN</button>
 </div>
 </form>
 <div>
-    <button id="clockout"> Clock Out</button>
+    <button type="button" id="clockout"> Clock Out</button>
 </div>
+
 <?php
-include 'EmployeeDatabaseConnection.php';
-$conn= new EmployeeDatabaseConnection();
-if(isset($_POST['click']))
-{
-    $date_clicked = date('Y-m-d H:i:s');;
-    echo "Time the button was clicked: " . $date_clicked . "<br>";
+//include 'EmployeeDatabaseConnection.php';
+//$conn= new EmployeeDatabaseConnection();
+//if(isset($_POST['click']))
+//{
+ //   $date_clicked = date('Y-m-d H:i:s');;
+ //   echo "Time the button was clicked: " . $date_clicked . "<br>";
 
-$DAYS=date('j');
-$FIntime=date("H:i:s");
-$MONTH=strtoupper(date('F'));
-echo $DAYS;
-echo $FIntime;
-echo $MONTH;
-$query= "INSERT INTO FEBRUARY (Days,FirstIn,FirstOut,SecondIn,SecondOut) VALUES ('$DAYS','$FIntime','$FIntime','$FIntime','$FIntime')";
-
-echo $query;
-	$conn->insertDatabase($query);
-}
+//$DAYS=date('j');
+//$FIntime=date("H:i:s");
+//$MONTH=strtoupper(date('F'));
+//echo $DAYS;
+//echo $FIntime;
+//echo $MONTH;
+//$query= "INSERT INTO FEBRUARY (Days,FirstIn,FirstOut,SecondIn,SecondOut) VALUES ('$DAYS','$FIntime','','','')";
+//echo $query;
+//	$conn->insertDatabase($query);
+//s}
 ?>
 
 </body>

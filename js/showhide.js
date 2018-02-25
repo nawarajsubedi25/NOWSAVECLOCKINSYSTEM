@@ -48,5 +48,12 @@ $(document).ready(function(){
 	      
 	  });
 	  
+	   $("#clockout").click(function(){
+	  	$("#clockinn").show();
+	  	$("#message").hide();
+	  	$("#clockout").hide();
+	      
+	  });
+	  
 	  
 });

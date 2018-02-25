@@ -1,30 +1,34 @@
 <?php
+//include('session.php');
+//$var=$login_session;
+
+//$EmployeeDatabaseConnection = new EmployeeDatabaseConnection ($var);
 /*                          Database connection class 
  Whenever we need to connect database and need to execute query we simple call this class and the method
  */
-class EmployeeDatabaseConnection
+class EmployeeDatabaseConnection 
 {
     public $localhost ;
     public $username ;
     public $password ;
-    public $dbname ;
+    public $dbname;
     public $port ;
     public $connection;
+    public $sessionName;
 
-    public function __construct ()
+    public function __construct ($sessionName)
     {
-
       $this->localhost = "127.0.0.1";
       $this ->username = "nawarajsubedi25";
       $this ->password = "";
-      $this ->dbname = "NAWARAJSUBEDI";
+      $this->dbname =$sessionName;
       $this->port = 3306;
       $this-> connectDatabase();
     }
     // Connect database 
      public function connectDatabase()
      {
-      $this->connection= mysqli_connect($this->localhost, $this->username, $this->password, $this->dbname, $this->port);
+      $this->connection= mysqli_connect($this->localhost, $this->username, $this->password,$this->dbname , $this->port);
       $error = mysqli_connect_errno();
       if ($error !=null)
       {
@@ -34,13 +38,18 @@ class EmployeeDatabaseConnection
     }
 
 // Insert values in Database 
-public function insertDatabase ($query)
+public function insertEmployeeDatabase ($query)
 {
   mysqli_query($this->connection, $query);
 }
 
+// Upadte values in Database 
+public function updateEmployeeDatabase ($query)
+{
+  mysqli_query($this->connection, $query);
+}
  // Execute query to retrive value from database
- public function returnQuery($query)
+ public function returnEmployeeQuery($query)
  {
 
   $result =mysqli_query($this->connection,$query);

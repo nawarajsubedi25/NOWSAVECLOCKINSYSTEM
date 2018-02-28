@@ -1,5 +1,7 @@
 $(document).ready(function(){
 	
+	
+	
 	 /*
 	// remove the href from only anchors also shows the cursor pointer
 	 $("a").removeAttr("href").css("cursor","pointer");
@@ -40,7 +42,6 @@ $(document).ready(function(){
 	  $("#message").hide();
 	  
 	  $("#clockout").hide();
-	  
 	   $("#clockinn").click(function(){
 	  	$("#clockinn").hide();
 	  	$("#message").show();
@@ -55,5 +56,12 @@ $(document).ready(function(){
 	      
 	  });
 	  
+if( !$.trim( $('#links').html() ).length ) {
+    $('#clockout').show();
+     $('#clockinn').hide();
+  } else { 
+  	alert("lamo");
+    $('#clockinn').show();
+  }
 	  
 });

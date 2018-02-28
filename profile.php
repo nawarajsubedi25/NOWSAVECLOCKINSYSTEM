@@ -18,8 +18,22 @@ include('session.php');
 </div>
 <p id="demo"></p>
 <div id="clockin">
-    
    <script type="text/javascript">
+   
+   /*****************************************
+ * Display hour and minutes in every minute
+  ****************************************/
+function loadlink(){
+    $('#links').load('hourMinuteCalculator.php',function () {
+         $(this).unwrap();
+    });
+}
+
+loadlink(); // This will run on page load
+setInterval(function(){
+    loadlink() // this will run after every 5 seconds
+},100);
+
 tday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
 tmonth=new Array("January","February","March","April","May","June","July","August","September","October","November","December");
 
@@ -43,11 +57,18 @@ window.onload=function(){
 GetClock();
 setInterval(GetClock,1000);
 }
+
 </script>
 </div>
-<div id="message">
-<p>You successful clock in</p>
+<div>
+    <p id="message"> </p>
 </div>
+<div>
+    <p id="message1"> </p>
+</div>
+<div>
+<p id="links"></p>
+    </div>
 <form action="" method="POST">
 <div>
     <button  type="button" name="click" class="click" id="clockinn"> Clock IN</button>

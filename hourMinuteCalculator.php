@@ -14,7 +14,6 @@ $MONTH=strtoupper(date('F'));
 $query= "SELECT * FROM $MONTH
          WHERE Days='$DAYS'
          LIMIT 1";
-         echo $query;
  $result=$conn->returnEmployeeQuery($query);
     if ($result->num_rows == 1) {
         $query= "SELECT * FROM $MONTH
@@ -24,25 +23,28 @@ $result=$conn->returnEmployeeQuery($query);
         	{
         	     if ($row[2]=="")
         	     {
-        	        $query= "UPDATE $MONTH
-        	                 SET FirstOut='$time'
-        	                 WHERE Days='$DAYS'";
-        	                 $conn->updateEmployeeDatabase($query);
+        	         $clockinTime=$row[1];
+        	         $diff  = strtotime($time)-strtotime($clockinTime);
+
+  $hours = floor($diff / (60 * 60));
+  $minutes = $diff - $hours * (60 * 60);
+  echo 'Working Time: ' . $hours .  ' hours, ' . floor( $minutes / 60 ) . ' minutes';
         	     }
-        	     else
+        	     elseif($row[4]=="")
         	     {
-        	        $query= "UPDATE $MONTH
-        	                 SET SecondOut='$time'
-        	                 WHERE Days='$DAYS'";
-        	                 $conn->updateEmployeeDatabase($query);
+        	        $clockinTime=$row[3];
+        	        $diff  = strtotime($time)-strtotime($clockinTime);
+
+  $hours = floor($diff / (60 * 60));
+  $minutes = $diff - $hours * (60 * 60);
+  echo 'Working Time: ' . $hours .  ' hours, ' . floor( $minutes / 60 ) . ' minutes';
         	     }
         	     
         
     }
-    }
- //   echo "lamo";
-//$query= "INSERT INTO FEBRUARY (Days,FirstIn,FirstOut,SecondIn,SecondOut) VALUES ('$DAYS','$FIntime','$FIntime','','')";
-//	$conn->insertEmployeeDatabase($query);
+   
 
+    }
+ 
 
     

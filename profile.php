@@ -19,10 +19,9 @@ include('session.php');
 <p id="demo"></p>
 <div id="clockin">
    <script type="text/javascript">
-   
    /*****************************************
  * Display hour and minutes in every minute
-  ****************************************/
+  ****************************************
 function loadlink(){
     $('#links').load('hourMinuteCalculator.php',function () {
          $(this).unwrap();
@@ -33,7 +32,35 @@ loadlink(); // This will run on page load
 setInterval(function(){
     loadlink() // this will run after every 5 seconds
 },100);
-
+*/
+$(document).ready(function(){
+  sendRequest();
+  function sendRequest(){
+      $.ajax({
+        url: "hourMinuteCalculator.php",
+        success: 
+          function(data){
+              if (!(data==""))
+              {
+                    $('#links').html(data); 
+                    $('#clockinn').hide();
+                    $('#clockout').show();
+              }
+              else
+              {
+                  $('#links').html("Hit Clock in Button"); 
+                  $('#clockout').hide();
+                   $('#clockinn').show();
+              }
+           
+        },
+        complete: function() {
+       // Schedule the next request when the current one's complete
+       setInterval(sendRequest, 10000); // The interval set to 5 second
+       }
+    });
+  };
+});
 tday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
 tmonth=new Array("January","February","March","April","May","June","July","August","September","October","November","December");
 
@@ -59,12 +86,6 @@ setInterval(GetClock,1000);
 }
 
 </script>
-</div>
-<div>
-    <p id="message"> </p>
-</div>
-<div>
-    <p id="message1"> </p>
 </div>
 <div>
 <p id="links"></p>

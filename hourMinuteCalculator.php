@@ -21,30 +21,24 @@ $query= "SELECT * FROM $MONTH
 $result=$conn->returnEmployeeQuery($query);  
         	while ($row = $result->fetch_array()) 
         	{
-        	     if ($row[2]=="")
+        	     if (($row[2]=="") && (!( $row[1]=="")))
         	     {
         	         $clockinTime=$row[1];
         	         $diff  = strtotime($time)-strtotime($clockinTime);
 
-  $hours = floor($diff / (60 * 60));
-  $minutes = $diff - $hours * (60 * 60);
-  echo 'Working Time: ' . $hours .  ' hours, ' . floor( $minutes / 60 ) . ' minutes';
+                   $hours = floor($diff / (60 * 60));
+                   $minutes = $diff - $hours * (60 * 60);
+                   echo 'Working Time: ' . $hours .  ' hours, ' . floor( $minutes / 60 ) . ' minutes';
         	     }
-        	     elseif($row[4]=="")
+        	     if (($row[4]=="") && (!( $row[3]=="")))
         	     {
         	        $clockinTime=$row[3];
         	        $diff  = strtotime($time)-strtotime($clockinTime);
 
-  $hours = floor($diff / (60 * 60));
-  $minutes = $diff - $hours * (60 * 60);
-  echo 'Working Time: ' . $hours .  ' hours, ' . floor( $minutes / 60 ) . ' minutes';
+                    $hours = floor($diff / (60 * 60));
+                    $minutes = $diff - $hours * (60 * 60);
+                    echo 'Working Time: ' . $hours .  ' hours, ' . floor( $minutes / 60 ) . ' minutes';
         	     }
         	     
-        
+        	     }
     }
-   
-
-    }
- 
-
-    

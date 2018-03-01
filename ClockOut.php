@@ -14,7 +14,6 @@ $MONTH=strtoupper(date('F'));
 $query= "SELECT * FROM $MONTH
          WHERE Days='$DAYS'
          LIMIT 1";
-         echo $query;
  $result=$conn->returnEmployeeQuery($query);
     if ($result->num_rows == 1) {
         $query= "SELECT * FROM $MONTH
@@ -40,9 +39,6 @@ $result=$conn->returnEmployeeQuery($query);
         
     }
     }
- //   echo "lamo";
-//$query= "INSERT INTO FEBRUARY (Days,FirstIn,FirstOut,SecondIn,SecondOut) VALUES ('$DAYS','$FIntime','$FIntime','','')";
-//	$conn->insertEmployeeDatabase($query);
-
+    echo "You have Succsefully clock out at ".$time;
 
     

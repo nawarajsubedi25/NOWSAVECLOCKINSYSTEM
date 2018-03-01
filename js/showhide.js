@@ -40,8 +40,6 @@ $(document).ready(function(){
 	 });
 	
 	  $("#message").hide();
-	  
-	  $("#clockout").hide();
 	   $("#clockinn").click(function(){
 	  	$("#clockinn").hide();
 	  	$("#message").show();
@@ -55,7 +53,7 @@ $(document).ready(function(){
 	  	$("#clockout").hide();
 	      
 	  });
-	  
+	  /*
 if( !$.trim( $('#links').html() ).length ) {
     $('#clockout').show();
      $('#clockinn').hide();
@@ -63,5 +61,5 @@ if( !$.trim( $('#links').html() ).length ) {
   	alert("lamo");
     $('#clockinn').show();
   }
-	  
+	 */ 
 });

@@ -30,9 +30,18 @@ $result=$conn->returnEmployeeQuery($query);
                    $minutes = $diff - $hours * (60 * 60);
                    echo 'Working Time: ' . $hours .  ' hours, ' . floor( $minutes / 60 ) . ' minutes';
         	     }
-        	     if (($row[4]=="") && (!( $row[3]=="")))
+        	     else if (($row[4]=="") && (!( $row[3]=="")))
         	     {
         	        $clockinTime=$row[3];
+        	        $diff  = strtotime($time)-strtotime($clockinTime);
+
+                    $hours = floor($diff / (60 * 60));
+                    $minutes = $diff - $hours * (60 * 60);
+                    echo 'Working Time: ' . $hours .  ' hours, ' . floor( $minutes / 60 ) . ' minutes';
+        	     }
+        	     else if(($row[6]=="") && (!( $row[5]=="")))
+        	     {
+        	        $clockinTime=$row[5];
         	        $diff  = strtotime($time)-strtotime($clockinTime);
 
                     $hours = floor($diff / (60 * 60));

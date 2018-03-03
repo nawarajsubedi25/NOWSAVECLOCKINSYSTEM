@@ -18,15 +18,30 @@ $query= "SELECT * FROM $MONTH
          LIMIT 1";
  $result=$conn->returnEmployeeQuery($query);
     if ($result->num_rows == 0) {
-        $query= "INSERT INTO $MONTH (Days,FirstIn,FirstOut,SecondIn,SecondOut) VALUES ('$DAYS','$time','','','')";
+        $query= "INSERT INTO $MONTH (Days,FirstIn,FirstOut,SecondIn,SecondOut,ThirdIn,ThirdOut,Total) VALUES ('$DAYS','$time','','','','','','')";
+        echo $query;
 	$conn->insertEmployeeDatabase($query);
     }
     else{
-        $query= "UPDATE $MONTH
+        
+        	while ($row = $result->fetch_array()) 
+        	{
+        	    if ($row[3]=="")
+        	     {
+                 $query= "UPDATE $MONTH
         	                 SET SecondIn='$time'
         	                 WHERE Days='$DAYS'";
         	                 $conn->updateEmployeeDatabase($query);
         	                 
+    }
+    else
+    {
+        $query= "UPDATE $MONTH
+        	                 SET ThirdIn='$time'
+        	                 WHERE Days='$DAYS'";
+        	                 $conn->updateEmployeeDatabase($query); 
+    }
+        	}
     }
     $time2= date('Y-m-d h:i:s A');
     $start=date("h:i:s A",strtotime($time2));

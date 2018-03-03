@@ -21,20 +21,28 @@ $query= "SELECT * FROM $MONTH
 $result=$conn->returnEmployeeQuery($query);  
         	while ($row = $result->fetch_array()) 
         	{
-        	     if ($row[2]=="")
+        	     if(($row[2]=="") && (!( $row[1]=="")))
         	     {
         	        $query= "UPDATE $MONTH
         	                 SET FirstOut='$time'
         	                 WHERE Days='$DAYS'";
         	                 $conn->updateEmployeeDatabase($query);
         	     }
-        	     else
+        	     else if(($row[4]=="") && (!( $row[3]=="")))
         	     {
         	        $query= "UPDATE $MONTH
         	                 SET SecondOut='$time'
         	                 WHERE Days='$DAYS'";
         	                 $conn->updateEmployeeDatabase($query);
         	     }
+        	     else if(($row[6]=="") && (!( $row[5]=="")))
+        	     {
+        	        $query= "UPDATE $MONTH
+        	                 SET ThirdOut='$time'
+        	                 WHERE Days='$DAYS'";
+        	                 $conn->updateEmployeeDatabase($query);
+        	     }
+        	     
         	     
         
     }

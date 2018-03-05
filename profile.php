@@ -6,33 +6,25 @@ include('session.php');
 <head>
 <title>Your Home Page</title>
 <link href="css/style.css" rel="stylesheet" type="text/css">
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script src="js/showhide.js"></script>
 	<script src="js/time.js"></script>
 </head>
 <body>
-<div id="profile">
+    <div class="container-fluid">
+    <div class="row" id="profile">
 <b id="welcome">Welcome : <i><?php echo $login_session; ?></i></b>
 <b id="logout"><a href="logout.php">Log Out</a></b>
 </div>
-<p id="demo"></p>
-<div id="clockin">
+<div class="row" id ="demo">
+</div>
    <script type="text/javascript">
    /*****************************************
  * Display hour and minutes in every minute
-  ****************************************
-function loadlink(){
-    $('#links').load('hourMinuteCalculator.php',function () {
-         $(this).unwrap();
-    });
-}
-
-loadlink(); // This will run on page load
-setInterval(function(){
-    loadlink() // this will run after every 5 seconds
-},100);
-*/
+  ****************************************/
 $(document).ready(function(){
   sendRequest();
   function sendRequest(){
@@ -56,7 +48,7 @@ $(document).ready(function(){
         },
         complete: function() {
        // Schedule the next request when the current one's complete
-       setInterval(sendRequest, 10000); // The interval set to 5 second
+       setInterval(sendRequest, 50000); // The interval set to 5 second
        }
     });
   };
@@ -86,38 +78,20 @@ setInterval(GetClock,1000);
 }
 
 </script>
-</div>
-<div>
-<p id="links"></p>
+<div class="row">
+<marquee scrollamount="15">
+   <div id="links">
     </div>
-<form action="" method="POST">
-<div>
-    <button  type="button" name="click" class="click" id="clockinn"> Clock IN</button>
-</div>
-</form>
-<div>
-    <button type="button" id="clockout"> Clock Out</button>
-</div>
+    </marquee>
+    </div>
 
-<?php
-//include 'EmployeeDatabaseConnection.php';
-//$conn= new EmployeeDatabaseConnection();
-//if(isset($_POST['click']))
-//{
- //   $date_clicked = date('Y-m-d H:i:s');;
- //   echo "Time the button was clicked: " . $date_clicked . "<br>";
-
-//$DAYS=date('j');
-//$FIntime=date("H:i:s");
-//$MONTH=strtoupper(date('F'));
-//echo $DAYS;
-//echo $FIntime;
-//echo $MONTH;
-//$query= "INSERT INTO FEBRUARY (Days,FirstIn,FirstOut,SecondIn,SecondOut) VALUES ('$DAYS','$FIntime','','','')";
-//echo $query;
-//	$conn->insertDatabase($query);
-//s}
-?>
+<div class ="row">
+    <button  type="button" name="click" class="btn btn-success center-block btn-lg" id="clockinn"> Clock IN</button>
+</div>
+<div class="row">
+    <button type="button" id="clockout" class="btn btn-danger center-block btn-lg"> Clock Out</button>
+</div>
+ </div> 
 
 </body>
 </html>

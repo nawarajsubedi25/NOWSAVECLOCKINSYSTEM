@@ -4,9 +4,7 @@ $var=$login_session;
 include 'EmployeeDatabaseConnection.php';
 $conn= new EmployeeDatabaseConnection($var);
 date_default_timezone_set("America/Chicago");
-    $date_clicked = date('Y-m-d H:i:s');;
-  //  echo "Time the button was clicked: " . $date_clicked . "<br>";
-
+$date_clicked = date('Y-m-d H:i:s');;
 $DAYS=date('j');
 $time=date('Y-m-d h:i:s A');
 $MONTH=strtoupper(date('F'));
@@ -25,7 +23,6 @@ $result=$conn->returnEmployeeQuery($query);
         	     {
         	         $clockinTime=$row[1];
         	         $diff  = strtotime($time)-strtotime($clockinTime);
-
                    $hours = floor($diff / (60 * 60));
                    $minutes = $diff - $hours * (60 * 60);
                    echo 'Working Time: ' . $hours .  ' hours, ' . floor( $minutes / 60 ) . ' minutes';
@@ -51,3 +48,5 @@ $result=$conn->returnEmployeeQuery($query);
         	     
         	     }
     }
+    
+  

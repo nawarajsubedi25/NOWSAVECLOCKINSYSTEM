@@ -1,8 +1,8 @@
-$(document).ready(function(){
-	
-	
-	
-	 /*
+$(document).ready(function() {
+
+
+
+	/**
 	// remove the href from only anchors also shows the cursor pointer
 	 $("a").removeAttr("href").css("cursor","pointer");
             var query = window.location.search.substring(1);
@@ -29,37 +29,28 @@ $(document).ready(function(){
 	   });
 	 });
 	 */
-	 	 $("#setup").click(function(){
-      $('#login').hide('scale', {}, 1000);
-		  $('#Create').show('scale', { percent: 100 }, 500);
-	 });
-	 
-	  $("#signin").click(function(){
-       $('#Create').hide('scale', {}, 1000);
-	     $('#login').show('scale', { percent: 100 }, 500);
-	 });
-	
-	  $("#message").hide();
-	   $("#clockinn").click(function(){
-	  	$("#clockinn").hide();
-	  	$("#message").show();
-	  	$("#clockout").show();
-	      
-	  });
-	  
-	   $("#clockout").click(function(){
-	  	$("#clockinn").show();
-	  	$("#message").hide();
-	  	$("#clockout").hide();
-	      
-	  });
-	  /*
-if( !$.trim( $('#links').html() ).length ) {
-    $('#clockout').show();
-     $('#clockinn').hide();
-  } else { 
-  	alert("lamo");
-    $('#clockinn').show();
-  }
-	 */ 
+	$("#setup").click(function() {
+		$('#login').hide('scale', {}, 1000);
+		$('#Create').show('scale', { percent: 100 }, 500);
+	});
+
+	$("#signin").click(function() {
+		$('#Create').hide('scale', {}, 1000);
+		$('#login').show('scale', { percent: 100 }, 500);
+	});
+
+	$("#message").hide();
+	$("#clockinn").click(function() {
+		$("#clockinn").hide();
+		$("#message").show();
+		$("#clockout").show();
+
+	});
+
+	$("#clockout").click(function() {
+		$("#clockinn").show();
+		$("#message").hide();
+		$("#clockout").hide();
+
+	});
 });

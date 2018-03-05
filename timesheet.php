@@ -93,6 +93,7 @@ $conn= new EmployeeDatabaseConnection($var);
 $DAYS=date('j');
 $time=date('Y-m-d h:i:s A');
 $MONTH=strtoupper(date('F'));
+$days = date("t");
 echo "
 	<table width='650'>
 	<td>
@@ -147,6 +148,10 @@ echo "
 					Time sheet below must be completed and returned to the Payroll Office by last
 					working day of the pay period.
 				</div><div class='month-and-year'>	
+							 Month: <u>&nbsp; &nbsp; &nbsp; August &nbsp; &nbsp; &nbsp;</u> &nbsp; &nbsp; &nbsp; 
+							 Year: <u>&nbsp; &nbsp; &nbsp; 2016 &nbsp; &nbsp; &nbsp;</u>
+						 </div>
+				</div><div class='month-and-year'>	
 							 From: <u> &nbsp; &nbsp; &nbsp;</u> &nbsp; &nbsp;
 							 To: <u> &nbsp; &nbsp; &nbsp;</u>
 						 </div><table class='log-table'>
@@ -167,6 +172,7 @@ echo "
                          		$x=1;
                          		while($row = $result->fetch_assoc())
 						{
+							 
 							 while( $x < $row["Days"])
 							 {
 							 	
@@ -180,11 +186,18 @@ echo "
 						             }
 							      }
 							echo "
-								<td style='border: 1px solid;' align='center'>{$row["Days"]}</td><td style='border: 1px solid;'> {$row["FirstIn"]}</td><td style='border: 1px solid;'>{$row["FirstOut"]}</td><td style='border: 1px solid;'></div>{$row["SecondIn"]}</td><td style='border: 1px solid;'>{$row["SecondOut"]}</td><td style='border: 1px solid;'>{$row["ThirdIn"]}</td><td style='border: 1px solid;'>{$row["ThirdOut"]}</td><td style='border: 1px solid;' align='center'></td></tr><tr>
+								<td style='border: 1px solid;' align='center'>{$row["Days"]}</td><td style='border: 1px solid;'>"; echo date("h:i:s A",strtotime($row["FirstIn"])). "</td><td style='border: 1px solid;'>"; echo date("h:i:s A",strtotime($row["FirstOut"])). "</td><td style='border: 1px solid;'></div>"; echo date("h:i:s A",strtotime($row["SeconIn"])). "</td><td style='border: 1px solid;'>"; echo date("h:i:s A",strtotime($row["SecondOut"])). "</td><td style='border: 1px solid;'>"; echo date("h:i:s A",strtotime($row["ThirdIn"])). "</td><td style='border: 1px solid;'>"; echo date("h:i:s A",strtotime($row["ThirdOut"])). "</td><td style='border: 1px solid;' align='center'>{$row["Total"]}</td></tr><tr>
 							
 							";
 							
-						}	
+						}
+						while (!($days-($x-1))==0)
+						{
+								echo "
+							      	<td style='border: 1px solid;' align='center'>$x</td><td style='border: 1px solid;'></td><td style='border: 1px solid;'></td><td style='border: 1px solid;'></div></td><td style='border: 1px solid;'></td><td style='border: 1px solid;'></td><td style='border: 1px solid;'></td><td style='border: 1px solid;' align='center'></td></tr><tr>
+						             ";
+						             $x++;
+						}
 						echo "
 							<td colspan='4'>&nbsp;</td>
 							<td style='border: 1px solid; border-bottom: 0;' colspan='3' align='left'><b>Total Hours Worked</b></td>

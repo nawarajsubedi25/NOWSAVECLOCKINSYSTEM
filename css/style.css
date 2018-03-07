@@ -168,11 +168,61 @@ p
   margin: 10px 0px 20px 25px;
   text-align: center;
 }
-#linksd
+#links
 {
-   text-align: center;
-     border: dashed 2px red;
+      text-align: center;
+      border: dashed 2px red;
       padding:10px 0px 10px 0px;
       margin-bottom: 10px;
-    width:100%;
+      width:100%;
+}
+hr.profile
+{
+    height: 5px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    width: 75%;
+    margin-left:100px;
+    background: #f0f0f0;
+	color: #8c8b8b;
+	font-size: 18px;
+		content: '\002665';
+	display: inline-block;
+}
+.fieldset
+{
+    margin: 0 6em 1.5em -6em !important;
+}
+
+    legend.scheduler-border {
+        font-size: 1.2em !important;
+        font-weight: bold !important;
+        text-align: left !important;
+        width:auto;
+        padding:0 10px;
+        border-bottom:none;
+    }
+    
+    .coolfieldset, .coolfieldset.expanded{
+	border:1px solid #aaa;   
+}
+
+.coolfieldset.collapsed{
+	border:0;
+	border-top:1px solid #aaa;
+}
+
+.coolfieldset legend{
+	padding-left:13px;
+	font-weight:bold;
+	cursor:pointer;
+	
+}
+
+.coolfieldset legend, .coolfieldset.expanded legend{
+	background: transparent url(../images/expanded.gif) no-repeat center left;
+}
+
+.coolfieldset.collapsed legend{
+	background: transparent url(../images/collapsed.gif) no-repeat center left;
 }

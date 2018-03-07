@@ -91,6 +91,7 @@ $var=$login_session;
 include 'EmployeeDatabaseConnection.php';
 $conn= new EmployeeDatabaseConnection($var);
 $DAYS=date('j');
+$YEAR=date('Y');
 $time=date('Y-m-d h:i:s A');
 $MONTH=strtoupper(date('F'));
 $days = date("t");
@@ -100,52 +101,44 @@ echo "
 				<div style='position: absolute; top: 10px; left: 10px;'><a href='javascript:window.print();'>Print</a></div>
 	      <div class='large-job-class'>04</div>
 	
-				<center>
+				<center> ";
+					$query="SELECT * FROM `INFORMATION` ";
+					 $result=$conn->returnEmployeeQuery($query);
+					 $row = $result->fetch_assoc();
+					 echo "
 				    <b>
   						Dhaliwal Inc. 
   						<br>
-  						04 Employee Workers
+  						EMPLOYEE TIMESHEET
 						</b>
 						<br>
 						<div style='margin-top: 5px; font-size: 0.8em;'>
 						<b>Generated electronically by http://webservices.ulm.edu/timeclock</b>
-						<br>for position: Cashier 
+						<br>for position: {$row["Position"]}
 						</div>
 				</center>
-	
+	             
 				<table cellpadding='3' cellspacing='3' width='100%'>
-					<tr>
-						<td style='font-size: 1.2em;' valign='top' align='right' width='12%'><b>&nbsp;&nbsp;CWID:</b></td>
-						<td valign='top' class='urow'><b></b></td>
+					<tr> ;
+				
+					 
+						<td style='font-size: 1.2em;' valign='top' align='right' width='12%'><b>&nbsp;&nbsp;Name:</b></td>
+						<td valign='top' class='urow'><b></b>{$row["Fname"]}&nbsp;{$row["Lname"]}</td>
 						<td>&nbsp;&nbsp;<td>
-						<td style='font-size: 1.2em;' valign='top' width='8%'><b>Name:</b></td>
-						<td valign='top' class='urow'><b></b></td>
+						<td style='font-size: 1.2em;' valign='top' width='8%'><b>SSN:</b></td>
+						<td valign='top' class='urow'><b></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$row["Ssn"]}</td>
 					</tr>	
 					<tr>
-						<td style='font-size: 1.2em;' valign='bottom' align='right'><b>Acct Name:</b></td>
-						<td valign='bottom' class='urow' width='200'><b></b></td>
+						<td style='font-size: 1.2em;' valign='bottom' align='right'><b>Address:</b></td>
+						<td valign='bottom' class='urow' width='300'><b></b>{$row["Address"]}</td>
 						<td>&nbsp;&nbsp;<td>
-						<td style='font-size: 1.2em;' valign='bottom'><b>Acct #:</b></td>
-						<td valign='top'>
-								<table border='1' class='little-table'>
-									<tr style='font-size: 1.2em;' align='center'>
-										<th width='28%'>Fund</th>
-										<th width='28%'>Orgn</th>
-										<th width='15%'>Prog</th>
-										<th width='29%'>Account</th>
-									</tr>
-									<tr style='font-size: 1.5em;' align='center'>
-										<td><b>275024</b></td>
-										<td><b>301803</b></td>
-										<td><b>51</b></td>
-										<td><b>601230</b></td>
-									</tr>
-								</table>
-						</td>
+						<td style='font-size: 1.2em;' valign='bottom'><b>Employeer:</b></td>
+					 	<td valign='top' class='urow'><b></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$row["Employer"]}</td>
+					</tr>	
 					</tr></table>
 				
 				<div class='notice'>
-					Time sheet below must be completed and returned to the Payroll Office by last
+					Time sheet below must be completed and returned to the Store Manager by last
 					working day of the pay period.
 				</div><div class='month-and-year'>	
 							 Month: <u>&nbsp; &nbsp; &nbsp; August &nbsp; &nbsp; &nbsp;</u> &nbsp; &nbsp; &nbsp; 
@@ -166,7 +159,8 @@ echo "
 							<th width='12%'>Totals</th>
 						</tr><tr> ";
 						
-						$query = "SELECT * FROM $MONTH";
+						$query = "SELECT * FROM `$YEAR`
+						          WHERE Month='$MONTH'";
 						 $result=$conn->returnEmployeeQuery($query);
                          	if ($result->num_rows > 0) {
                          		$x=1;
@@ -198,14 +192,18 @@ echo "
 						             ";
 						             $x++;
 						}
-						echo "
+							$query = "SELECT * FROM `PAYSTUBS`
+						          WHERE Month='$MONTH' AND Year=$YEAR";
+						       $result=$conn->returnEmployeeQuery($query);
+					            $row = $result->fetch_assoc();
+					            echo "
 							<td colspan='4'>&nbsp;</td>
 							<td style='border: 1px solid; border-bottom: 0;' colspan='3' align='left'><b>Total Hours Worked</b></td>
 							<td style='border: 1px solid;'><b></b></td>
 						</tr><tr style='font-size: 1.1em;' align='center'>
 							<td colspan='4'>&nbsp;</td>
 							<td style='border: 1px solid; border-top: 0; border-right:0;' colspan='2' align='left'><b>Hourly Wage</b></td>
-							<td style='border: 1px solid; border-top: 0; border-left:0;'><b></b></td>
+							<td style='border: 1px solid; border-top: 0; border-left:0;'><b></b>{$row["Srate"]}</td>
 							<td style='border: 1px solid;'><b></b></td>
 						</tr></table>
 	
@@ -214,16 +212,16 @@ echo "
 	<table border='0' width='100%' class='table-below-numbers' cellspacing='5'>
 	 <td align='center' style='border: 1px solid;' width='50%'>
 	   <br><br>______________________________________________________<br>
-	   <span class='under-caption'>STUDENT SIGNATURE</span>&nbsp;&nbsp;&nbsp; DATE<br>
+	   <span class='under-caption'>EMPLOYEE SIGNATURE</span>&nbsp;&nbsp;&nbsp; DATE<br>
 	   <br><br>______________________________________________________<br>
-	   <span class='under-caption'>SUPERVISOR SIGNATURE</span>&nbsp;&nbsp; DATE
+	   <span class='under-caption'>MANAGER SIGNATURE</span>&nbsp;&nbsp; DATE
 	   	   
 	 </td>
 	 
 	 <td valign='top' style='border: 1px solid; line-height: 23px;' width='50%'>
-	     <div style='background-color: #aaa; text-align: center;'><b>SUPERVISOR</b></div>
+	     <div style='background-color: #aaa; text-align: center;'><b>Store Manager</b></div>
 	   <span class='side-caption'>Printed Name:</span> ______________________________________
-	   <br><span class='side-caption'>Department:</span> ______________________________________
+	   <br><span class='side-caption'>Store Name:</span> ______________________________________
 	   <br><span class='side-caption'>Phone #:</span> ______________________________________     
 	 
 	 </td>	 

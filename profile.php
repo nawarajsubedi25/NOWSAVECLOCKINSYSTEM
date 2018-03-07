@@ -10,6 +10,8 @@ include('session.php');
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+ <script language="javascript" type="text/javascript" src="../js/jquery.coolfieldset.js"></script>
+ <link rel="stylesheet" type="text/css" href="css/jquery.coolfieldset.css" />
 	<script src="js/showhide.js"></script>
 	<script src="js/time.js"></script>
 </head>
@@ -76,13 +78,14 @@ window.onload=function(){
 GetClock();
 setInterval(GetClock,1000);
 }
-
 </script>
-<div class="row">
+<!--div class="row">
 <marquee scrollamount="15">
    <div id="links">
     </div>
     </marquee>
+    </div-->
+    <div class="row" id="links">
     </div>
 
 <div class ="row">
@@ -91,6 +94,25 @@ setInterval(GetClock,1000);
 <div class="row">
     <button type="button" id="clockout" class="btn btn-danger center-block btn-lg"> Clock Out</button>
 </div>
+<div class="row">
+    <hr class="profile">
+    </div>
+    
+    <div class="container">
+       <fieldset class="coolfieldset" id="timesheetFieldset">
+    <legend class="scheduler-border">Monthly Timesheet</legend>
+    <div class="control-group">
+    </div>
+</fieldset>
+ <fieldset id="paystubsFieldset" class="coolfieldset">
+    <legend>Pay Stubs </legend>
+  </fieldset>
+ <script>
+  
+    $('#timesheetFieldset').coolfieldset({collapsed:true,speed:"fast"});
+      $('#paystubsFieldset').coolfieldset({collapsed:true});
+  </script>
+    </div>
  </div> 
 
 </body>

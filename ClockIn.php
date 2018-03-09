@@ -14,7 +14,6 @@ $query= "SELECT * FROM `$YEAR`
          WHERE Date= '$YearToDate' AND Days='$DAYS'
          LIMIT 1";
          
-         echo $query;
  $result=$conn->returnEmployeeQuery($query);
     if ($result->num_rows == 0) {
         $query= "INSERT INTO `$YEAR` (Date,Month,Days,FirstIn,FirstOut,SecondIn,SecondOut,ThirdIn,ThirdOut,Total) VALUES ('$YearToDate','$MONTH','$DAYS','$time','','','','','','')";

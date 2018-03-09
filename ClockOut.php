@@ -11,6 +11,9 @@ $YearToDate=date('Y-m-d');
 $time=date('Y-m-d h:i:s A');
 $MONTH=strtoupper(date('F'));
 
+/*
+ Store Clock out time and date
+*/
 $query= "SELECT * FROM `$YEAR`
          WHERE Date= '$YearToDate' AND Days='$DAYS'
          LIMIT 1";
@@ -27,6 +30,7 @@ $result=$conn->returnEmployeeQuery($query);
         	                 SET FirstOut='$time'
         	                 WHERE Days='$DAYS' AND Date='$YearToDate'";
         	                 $conn->updateEmployeeDatabase($query);
+        	                  echo "You have Succsefully clock out at ".$time;
         	     }
         	     else if(($row[6]=="") && (!( $row[5]=="")))
         	     {
@@ -34,6 +38,7 @@ $result=$conn->returnEmployeeQuery($query);
         	                 SET SecondOut='$time'
         	                 WHERE Days='$DAYS' AND Date='$YearToDate'";
         	                 $conn->updateEmployeeDatabase($query);
+        	                  echo "You have Succsefully clock out at ".$time;
         	     }
         	     else if(($row[8]=="") && (!( $row[7]=="")))
         	     {
@@ -41,16 +46,29 @@ $result=$conn->returnEmployeeQuery($query);
         	                 SET ThirdOut='$time'
         	                 WHERE Days='$DAYS' AND Date='$YearToDate'";
         	                 $conn->updateEmployeeDatabase($query);
+        	                  echo "You have Succsefully clock out at ".$time;
         	     }
              }
+    }
+    
+    /*
+     Calculate total number of hour work in day
+    */
              
-               	$query = "SELECT * FROM `$YEAR`
-    	          WHERE Days='$DAYS' AND Date='$YearToDate'";
+               	$query = "SELECT * FROM `$YEAR`";
     	
 						 $result=$conn->returnEmployeeQuery($query);
-                         	if ($result->num_rows > 0) {
+                         	if ($result->num_rows > 0) 
+                         	{
                          		while($row = $result->fetch_array())
 						{
+						    $totalHours=0;
+						    $totalMinutes=0;
+						    $hoursFromMinutes=0;
+						    $date=$row[0];
+						    $days=$row[2];
+						    $hourMinutes=0;
+						    $remainingMinutes=0;
 						   
 						     if (!($row[4]=="") && (!( $row[3]=="")))
         	     {
@@ -61,6 +79,7 @@ $result=$conn->returnEmployeeQuery($query);
                    $minutes = $diff - $hours * (60 * 60);
                    $totalMinutes+=$minutes;
                    $totalHours+=$hours;
+                   
 						}
 								 if (!($row[5]=="") && (!( $row[6]=="")))
         	     {
@@ -82,15 +101,18 @@ $result=$conn->returnEmployeeQuery($query);
                    $totalMinutes+=$minutes;
                    $totalHours+=$hours;
 						}
-						}
-						$hourMinutes= $totalHours."." . floor( $totalMinutes / 60 );
+						
+        	             	$hourFromMinutes= intval( floor($totalMinutes / 60)/60 );
+        	             	$remainingMinutes=intval( floor($totalMinutes / 60)/60 ) - ($hoursFromMinutes * 60);
+        	             	$totalHours+=$hourFromMinutes;
+						$hourMinutes= $totalHours."." . fmod( floor($totalMinutes/60), 60 );
 					 $query= "UPDATE `$YEAR`
         	                 SET Total='$hourMinutes'
-        	                WHERE Days='$DAYS' AND Date='$YearToDate'";
-        	                $conn->updateEmployeeDatabase($query);	
+        	                WHERE Days='$days' AND Date='$date'";
+        	                $conn->updateEmployeeDatabase($query);   
+						}
+					
+						
                          	}
              
-    }
-    echo "You have Succsefully clock out at ".$time;
-
    ?> 

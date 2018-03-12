@@ -19,10 +19,16 @@ include('session.php');
     <div class="container-fluid">
     <div class="row" id="profile">
 <b id="welcome">Welcome : <i><?php echo $login_session; ?></i></b>
-<b id="logout"><a href="logout.php">Log Out</a></b>
+<b id="logout"><a href="logout.php" class="logout">Log Out</a></b>
 </div>
-<div class="row" id ="demo">
 </div>
+<div class="container">
+<div class="row">
+    <div id ="demo">
+    </div>
+</div>
+</div>
+
    <script type="text/javascript">
    /*****************************************
  * Display hour and minutes in every minute
@@ -79,41 +85,98 @@ GetClock();
 setInterval(GetClock,1000);
 }
 </script>
-<!--div class="row">
+<div class="container">
+    <!--div class="row">
 <marquee scrollamount="15">
    <div id="links">
     </div>
     </marquee>
     </div-->
-    <div class="row" id="links">
+    <div class="row">
+        <div id="links">
     </div>
-
+</div>
+</div>
+<div class="container">
 <div class ="row">
     <button  type="button" name="click" class="btn btn-success center-block btn-lg" id="clockinn"> Clock IN</button>
 </div>
 <div class="row">
     <button type="button" id="clockout" class="btn btn-danger center-block btn-lg"> Clock Out</button>
 </div>
+</div>
+<div class="container">
 <div class="row">
     <hr class="profile">
     </div>
-    
+</div>    
     <div class="container">
+        <div class="row timesheetFieldset">
        <fieldset class="coolfieldset" id="timesheetFieldset">
-    <legend class="scheduler-border">Monthly Timesheet</legend>
+    <legend>Monthly Timesheet</legend>
     <div class="control-group">
+        <?php
+         $var=$login_session;
+         include 'EmployeeDatabaseConnection.php';
+         $conn= new EmployeeDatabaseConnection($var);
+         date_default_timezone_set("America/Chicago");
+         $date_clicked = date('Y-m-d H:i:s');
+        $DAYS=date('j');
+         $YEAR=date('Y');
+        $YearToDate=date('Y-m-d');
+        $time=date('Y-m-d h:i:s A');
+        $MONTH=strtoupper(date('F'));
+        
+        	$query = "SELECT DISTINCT Month FROM `2018` ORDER BY Date";
+        	$result=$conn->returnEmployeeQuery($query);
+                         	if ($result->num_rows > 0) {
+                         		while($row = $result->fetch_array())
+						{
+						     echo "
+						     <form action='timesheet.php' method='post' target='_blank'>
+						     <button class='timesheet' name='buttonTimesheet' value='{$row["0"]} 2018' id='buttonTimesheet'>{$row["0"]}</button>
+						     </form>
+						 ";
+					//	 echo "
+					//	  <td width='50%' style='font-size: 1.2em;'> <a href=timesheet.php?compna=",urlencode($row["0"])," target='_blank' class='timesheet'> {$row["0"]}</a></td>
+					//	  ";
+					
+				//	echo "<input class='timesheet' method='post' id='buttonTimesheet' name='finalsubmit' type=button onClick=window.open('timesheet.php'); value='{$row["0"]}'>";
+						}
+                         	}
+        
+        ?>
     </div>
 </fieldset>
+</div>
+</div>
+ <div class="container">
+        <div class="row paystubsFieldset">
  <fieldset id="paystubsFieldset" class="coolfieldset">
     <legend>Pay Stubs </legend>
-  </fieldset>
+  
+  <div class="control-group">
+  <?php
+  	$query = "SELECT DISTINCT Month FROM `2018` ORDER BY Date";
+        	$result=$conn->returnEmployeeQuery($query);
+                         	if ($result->num_rows > 0) {
+                         		while($row = $result->fetch_array())
+						{
+						    echo "
+						    <button class='timesheet' name='buttonTimesheet' id='buttonTimesheet'>{$row["0"]}</button>";
+						// echo "
+						//  <td width='50%' style='font-size: 1.2em;'> <a href=timesheet.php?compna=",urlencode($row["0"])," target='_blank' class='timesheet'> {$row["0"]}</a></td>
+						 // ";
+						}
+                         	}
+                         	?>
+    </div>
+      </fieldset>
+ </div> 
  <script>
   
     $('#timesheetFieldset').coolfieldset({collapsed:true,speed:"fast"});
-      $('#paystubsFieldset').coolfieldset({collapsed:true});
+      $('#paystubsFieldset').coolfieldset({collapsed:true,speed:"fast"});
   </script>
-    </div>
- </div> 
-
 </body>
 </html>

@@ -87,14 +87,25 @@ include('session.php');
 	</style>
 	
 <?php
+if (isset($_POST["buttonTimesheet"]))
+{
 $var=$login_session;
 include 'EmployeeDatabaseConnection.php';
 $conn= new EmployeeDatabaseConnection($var);
-$DAYS=date('j');
+date_default_timezone_set("America/Chicago");
+$DAYS=date('j'); // Day 
 $YEAR=date('Y');
 $time=date('Y-m-d h:i:s A');
 $MONTH=strtoupper(date('F'));
-$days = date("t");
+$days = date("t"); //length of day
+
+$monthYear = explode(" ", $_POST["buttonTimesheet"]);
+$MONTH= $monthYear[0]; // piece1
+$YEAR= $monthYear[1]; // piece2
+$date = $_POST["buttonTimesheet"];
+$numberMonth= date('m', strtotime($date));
+echo $numberMonth;
+$days=date('t', mktime(0, 0, 0, $numberMonth, 1, $YEAR)); 
 echo "
 	<table width='650'>
 	<td>
@@ -236,5 +247,7 @@ echo "
 	</td>
 	</table>
 	";
+                         
                          	}
+}
 	?>

@@ -10,9 +10,17 @@ $YEAR=date('Y');
 $YearToDate=date('Y-m-d');
 $time=date('Y-m-d h:i:s A');
 $MONTH=strtoupper(date('F'));
+
+                     // Get Salary Information for the employee from EMPLOYEE INFORMATION 
+                       	$query = "SELECT Srate FROM `INFORMATION`";
+						  $result=$conn->returnEmployeeQuery($query);
+						  $row = $result->fetch_assoc();
+                          $Srate =$row["Srate"];
     /*
-     Calculate total number of hour work in day
+     Calculate total number of hour work in day and for Month
     */
+    
+        // Calculate number of hours work in a day. 
              
                	$query1 = "SELECT DISTINCT Month FROM `2018` ORDER BY Date";
 						 $result1=$conn->returnEmployeeQuery($query1);
@@ -82,14 +90,38 @@ $MONTH=strtoupper(date('F'));
         	                 SET Total='$hourMinutes'
         	                 WHERE Days='$days' AND Date='$date'";
         	                $conn->updateEmployeeDatabase($query);
+        	                
+        	                
+        	                // For Month 
         	                $HOURS+=$totalHours;
                          	$MINUTES+=fmod( floor($totalMinutes/60), 60 );
-                         	
-                         	
-                         		$hoursFromMINUTES= intval($MINUTES/60 );
+                         	$hoursFromMINUTES= intval($MINUTES/60 );
         	             	$HOURS+=$hoursFromMINUTES;
-        	             $MINUTES=fmod($MINUTES, 60 );
+        	                $MINUTES=fmod($MINUTES, 60 );
+        	                $HOURSMINUTES=$HOURS.".".$MINUTES;
+        	             
 						}
+						// GROSS PAY CALCULATOR
+						$worktime = ($HOURS * 60 + $MINUTES)/60;
+                        $salary = $Srate*100; // = $1200-> in cents!
+                        $GrossAmount = number_format(($worktime * $salary)/100,2, '.', ''); // This result is in Dollars
+					    $query= "SELECT * FROM `PAYSTUBS`
+                                 WHERE YEAR= '$YEAR' AND MONTH='$month'
+                                 LIMIT 1";
+                         $result=$conn->returnEmployeeQuery($query);
+                         if ($result->num_rows == 0) {
+    	                      $query="INSERT INTO `PAYSTUBS`(`Year`, `Month`, `Srate`, `Thour`, `GrossAmount`, `Sdudction`, ` FederalTaxWithholding`,
+    	                              ` SederalTaxWithholding`, `TotalPersonalDeductions`, `NetAmount`) VALUES ('$YEAR','$month','$Srate','$HOURSMINUTES',$GrossAmount,'','','','','')";
+    	                     	$conn->insertEmployeeDatabase($query);
+                            }
+                            
+                            else {
+                                $query="UPDATE `PAYSTUBS` SET `Thour`='$HOURSMINUTES',`GrossAmount`=$GrossAmount
+                                        WHERE Month='$month' AND Year='$YEAR'";
+                                         $conn->updateEmployeeDatabase($query);
+                                        
+                            }
+                            
 					
                          	}
                          

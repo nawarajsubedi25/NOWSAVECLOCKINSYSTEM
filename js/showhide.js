@@ -40,9 +40,9 @@ $(document).ready(function() {
 	});
 
 	$("#message").hide();
+	$("#clockout").hide();
 	$("#clockinn").click(function() {
 		$("#clockinn").hide();
-		$("#message").show();
 		$("#clockout").show();
 
 	});
@@ -53,5 +53,6 @@ $(document).ready(function() {
 		$("#clockout").hide();
 
 	});
+	
 	
 });

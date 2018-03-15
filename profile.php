@@ -1,10 +1,11 @@
 <?php
 include('session.php');
+include('Calculator.php');
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Your Home Page</title>
+<title>NOW&SAVE</title>
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -85,13 +86,8 @@ GetClock();
 setInterval(GetClock,1000);
 }
 </script>
+
 <div class="container">
-    <!--div class="row">
-<marquee scrollamount="15">
-   <div id="links">
-    </div>
-    </marquee>
-    </div-->
     <div class="row">
         <div id="links">
     </div>
@@ -102,7 +98,7 @@ setInterval(GetClock,1000);
     <button  type="button" name="click" class="btn btn-success center-block btn-lg" id="clockinn"> Clock IN</button>
 </div>
 <div class="row">
-    <button type="button" id="clockout" class="btn btn-danger center-block btn-lg"> Clock Out</button>
+    <button type="button" id="clockout" class="btn btn-danger center-block btn-lg" > Clock Out</button>
 </div>
 </div>
 <div class="container">
@@ -116,9 +112,6 @@ setInterval(GetClock,1000);
     <legend>Monthly Timesheet</legend>
     <div class="control-group">
         <?php
-         $var=$login_session;
-         include 'EmployeeDatabaseConnection.php';
-         $conn= new EmployeeDatabaseConnection($var);
          date_default_timezone_set("America/Chicago");
          $date_clicked = date('Y-m-d H:i:s');
         $DAYS=date('j');
@@ -133,15 +126,10 @@ setInterval(GetClock,1000);
                          		while($row = $result->fetch_array())
 						{
 						     echo "
-						     <form action='timesheet.php' method='post' target='_blank'>
-						     <button class='timesheet' name='buttonTimesheet' value='{$row["0"]} 2018' id='buttonTimesheet'>{$row["0"]}</button>
+						     <form action='timesheet.php' method='post' target='_blank' style ='display:inline;'>
+						     <button class='buttonTimesheet' name='buttonTimesheet' value='{$row["0"]} 2018' >{$row["0"]}</button>
 						     </form>
 						 ";
-					//	 echo "
-					//	  <td width='50%' style='font-size: 1.2em;'> <a href=timesheet.php?compna=",urlencode($row["0"])," target='_blank' class='timesheet'> {$row["0"]}</a></td>
-					//	  ";
-					
-				//	echo "<input class='timesheet' method='post' id='buttonTimesheet' name='finalsubmit' type=button onClick=window.open('timesheet.php'); value='{$row["0"]}'>";
 						}
                          	}
         
@@ -155,18 +143,18 @@ setInterval(GetClock,1000);
  <fieldset id="paystubsFieldset" class="coolfieldset">
     <legend>Pay Stubs </legend>
   
-  <div class="control-group">
+  <div class="control-group" >
   <?php
-  	$query = "SELECT DISTINCT Month FROM `2018` ORDER BY Date";
+  	$query = "SELECT Distinct Month FROM  `PAYSTUBS` ORDER BY  `PAYSTUBS`.`Date` ASC ";
         	$result=$conn->returnEmployeeQuery($query);
                          	if ($result->num_rows > 0) {
                          		while($row = $result->fetch_array())
 						{
 						    echo "
-						    <button class='timesheet' name='buttonTimesheet' id='buttonTimesheet'>{$row["0"]}</button>";
-						// echo "
-						//  <td width='50%' style='font-size: 1.2em;'> <a href=timesheet.php?compna=",urlencode($row["0"])," target='_blank' class='timesheet'> {$row["0"]}</a></td>
-						 // ";
+						     <form action='timesheet.php' method='post' target='_blank' style ='display:inline;'>
+						     <button class='buttonTimesheet' name='buttonTimesheet' value='{$row["0"]} 2018' >{$row["0"]}</button>
+						     </form>
+						 ";
 						}
                          	}
                          	?>
@@ -178,5 +166,16 @@ setInterval(GetClock,1000);
     $('#timesheetFieldset').coolfieldset({collapsed:true,speed:"fast"});
       $('#paystubsFieldset').coolfieldset({collapsed:true,speed:"fast"});
   </script>
+  <footer>
+      <div class="container-fluid">
+      <div class="row">
+      <div class="footer">
+           <p>Dhaliwal Inc. <br> NOW SAVE STORES <br> 2080 Winsboro Rd Monroe LA 71203
+           <br> <a href="http://www.nawarajsubedi.com">&copy;Nawaraj Subedi- Software Developer</a></p>
+      </div>
+  </div>
+</div>
+ </footer>
+
 </body>
 </html>

@@ -1,5 +1,4 @@
 <?php
-include('session.php');
 $var=$login_session;
 include 'EmployeeDatabaseConnection.php';
 $conn= new EmployeeDatabaseConnection($var);
@@ -7,8 +6,8 @@ date_default_timezone_set("America/Chicago");
     $date_clicked = date('Y-m-d H:i:s');
 $DAYS=date('j');
 $YEAR=date('Y');
+$YEARMONTH=date('Y-m');
 $YearToDate=date('Y-m-d');
-$time=date('Y-m-d h:i:s A');
 $MONTH=strtoupper(date('F'));
 
                      // Get Salary Information for the employee from EMPLOYEE INFORMATION 
@@ -106,18 +105,18 @@ $MONTH=strtoupper(date('F'));
                         $salary = $Srate*100; // = $1200-> in cents!
                         $GrossAmount = number_format(($worktime * $salary)/100,2, '.', ''); // This result is in Dollars
 					    $query= "SELECT * FROM `PAYSTUBS`
-                                 WHERE YEAR= '$YEAR' AND MONTH='$month'
+                                 WHERE Date= '$YEARMONTH' AND MONTH='$month'
                                  LIMIT 1";
                          $result=$conn->returnEmployeeQuery($query);
                          if ($result->num_rows == 0) {
-    	                      $query="INSERT INTO `PAYSTUBS`(`Year`, `Month`, `Srate`, `Thour`, `GrossAmount`, `Sdudction`, ` FederalTaxWithholding`,
-    	                              ` SederalTaxWithholding`, `TotalPersonalDeductions`, `NetAmount`) VALUES ('$YEAR','$month','$Srate','$HOURSMINUTES',$GrossAmount,'','','','','')";
+    	                      $query="INSERT INTO `PAYSTUBS`(`Date`, `Month`, `Srate`, `Thour`, `GrossAmount`, `Sdudction`, ` FederalTaxWithholding`,
+    	                              ` SederalTaxWithholding`, `TotalPersonalDeductions`, `NetAmount`) VALUES ('$YEARMONTH','$month','$Srate','$HOURSMINUTES',$GrossAmount,'','','','','')";
     	                     	$conn->insertEmployeeDatabase($query);
                             }
                             
                             else {
                                 $query="UPDATE `PAYSTUBS` SET `Thour`='$HOURSMINUTES',`GrossAmount`=$GrossAmount
-                                        WHERE Month='$month' AND Year='$YEAR'";
+                                        WHERE Month='$month' AND Date='$YEARMONTH'";
                                          $conn->updateEmployeeDatabase($query);
                                         
                             }

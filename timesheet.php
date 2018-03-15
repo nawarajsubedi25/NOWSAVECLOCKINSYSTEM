@@ -1,6 +1,11 @@
 <?php
 include('session.php');
+include('Calculator.php');
 ?>
+
+<html>
+<head>
+<title>Timesheet!EMPLOYEE</title>
 	<style>
 		body {
 			font-family: Arial, Verdana, sans serif;			
@@ -85,27 +90,20 @@ include('session.php');
 		}
 		
 	</style>
+	</head>
 	
 <?php
 if (isset($_POST["buttonTimesheet"]))
 {
-$var=$login_session;
-include 'EmployeeDatabaseConnection.php';
-$conn= new EmployeeDatabaseConnection($var);
 date_default_timezone_set("America/Chicago");
-$DAYS=date('j'); // Day 
-$YEAR=date('Y');
-$time=date('Y-m-d h:i:s A');
-$MONTH=strtoupper(date('F'));
-$days = date("t"); //length of day
-
 $monthYear = explode(" ", $_POST["buttonTimesheet"]);
-$MONTH= $monthYear[0]; // piece1
-$YEAR= $monthYear[1]; // piece2
+$MONTH= $monthYear[0]; 
+$YEAR= $monthYear[1];
 $date = $_POST["buttonTimesheet"];
 $numberMonth= date('m', strtotime($date));
-echo $numberMonth;
+$YEARMONTH=$YEAR."-".$numberMonth;
 $days=date('t', mktime(0, 0, 0, $numberMonth, 1, $YEAR)); 
+
 echo "
 	<table width='650'>
 	<td>
@@ -124,8 +122,8 @@ echo "
 						</b>
 						<br>
 						<div style='margin-top: 5px; font-size: 0.8em;'>
-						<b>Generated electronically by http://webservices.ulm.edu/timeclock</b>
-						<br>for position: {$row["Position"]}
+						<b>Generated electronically by http://www.nowsavestore/timeclock</b>
+						<br>for position: <b>{$row["Position"]}</b>
 						</div>
 				</center>
 	             
@@ -134,17 +132,17 @@ echo "
 				
 					 
 						<td style='font-size: 1.2em;' valign='top' align='right' width='12%'><b>&nbsp;&nbsp;Name:</b></td>
-						<td valign='top' class='urow'><b></b>{$row["Fname"]}&nbsp;{$row["Lname"]}</td>
+						<td valign='top' class='urow'><b>{$row["Fname"]}&nbsp;{$row["Lname"]}</b></td>
 						<td>&nbsp;&nbsp;<td>
 						<td style='font-size: 1.2em;' valign='top' width='8%'><b>SSN:</b></td>
-						<td valign='top' class='urow'><b></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$row["Ssn"]}</td>
+						<td valign='top' class='urow'><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$row["Ssn"]}</b></td>
 					</tr>	
 					<tr>
 						<td style='font-size: 1.2em;' valign='bottom' align='right'><b>Address:</b></td>
-						<td valign='bottom' class='urow' width='300'><b></b>{$row["Address"]}</td>
+						<td valign='bottom' class='urow' width='300'><b>{$row["Address"]}</b></td>
 						<td>&nbsp;&nbsp;<td>
 						<td style='font-size: 1.2em;' valign='bottom'><b>Employeer:</b></td>
-					 	<td valign='top' class='urow'><b></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$row["Employer"]}</td>
+					 	<td valign='top' class='urow'><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$row["Employer"]}</b></td>
 					</tr>	
 					</tr></table>
 				
@@ -152,13 +150,10 @@ echo "
 					Time sheet below must be completed and returned to the Store Manager by last
 					working day of the pay period.
 				</div><div class='month-and-year'>	
-							 Month: <u>&nbsp; &nbsp; &nbsp; August &nbsp; &nbsp; &nbsp;</u> &nbsp; &nbsp; &nbsp; 
-							 Year: <u>&nbsp; &nbsp; &nbsp; 2016 &nbsp; &nbsp; &nbsp;</u>
+							 Month: <u>&nbsp; &nbsp; &nbsp; $MONTH &nbsp; &nbsp; &nbsp;</u> &nbsp; &nbsp; &nbsp; 
+							 Year: <u>&nbsp; &nbsp; &nbsp; $YEAR &nbsp; &nbsp; &nbsp;</u>
 						 </div>
-				</div><div class='month-and-year'>	
-							 From: <u> &nbsp; &nbsp; &nbsp;</u> &nbsp; &nbsp;
-							 To: <u> &nbsp; &nbsp; &nbsp;</u>
-						 </div><table class='log-table'>
+				</div><table class='log-table'>
 						<tr style='border: 0;'>
 							<th width='10%'>Date</th>
 							<th width='12%'>Start</th>
@@ -177,6 +172,7 @@ echo "
                          		$x=1;
                          		while($row = $result->fetch_assoc())
 						{
+							
 							 
 							 while( $x < $row["Days"])
 							 {
@@ -189,9 +185,47 @@ echo "
 						             {
 						             	$x++;
 						             }
-							      }
+							   }
+							      
+							 if (($row["FirstIn"]=="") || ($row["FirstOut"]==""))
+							 {
+							 	$FirstIn="";
+							 	$FirstOut="";
+							 	
+							 }
+							 else  {
+							 	$FirstIn= date("h:i A",strtotime($row["FirstIn"]));
+							 	$FirstOut=date("h:i A",strtotime($row["FirstOut"]));
+							 	
+							 }
+							 
+							  if (($row["SecondIn"]=="") || ($row["SecondOut"]==""))
+							 {
+							 	$SecondIn="";
+							 	$SecondOut="";
+							 	
+							 }
+							 else  {
+							 	$SecondIn= date("h:i A",strtotime($row["SecondIn"]));
+							 	$SecondOut=date("h:i A",strtotime($row["SecondOut"]));
+							 	
+							 }
+							 
+							  if (($row["ThirdIn"]=="") || ($row["ThirdOut"]==""))
+							 {
+							 	$ThirdIn="";
+							 	$ThirdOut="";
+							    
+							 	
+							 }
+							 else  {
+							 	$ThirdIn= date("h:i A",strtotime($row["ThirdIn"]));
+							 	$ThirdOut=date("h:i A",strtotime($row["ThirdOut"]));
+							 
+							 
+							 }
 							echo "
-								<td style='border: 1px solid;' align='center'>{$row["Days"]}</td><td style='border: 1px solid;'>"; echo date("h:i:s A",strtotime($row["FirstIn"])). "</td><td style='border: 1px solid;'>"; echo date("h:i:s A",strtotime($row["FirstOut"])). "</td><td style='border: 1px solid;'></div>"; echo date("h:i:s A",strtotime($row["SeconIn"])). "</td><td style='border: 1px solid;'>"; echo date("h:i:s A",strtotime($row["SecondOut"])). "</td><td style='border: 1px solid;'>"; echo date("h:i:s A",strtotime($row["ThirdIn"])). "</td><td style='border: 1px solid;'>"; echo date("h:i:s A",strtotime($row["ThirdOut"])). "</td><td style='border: 1px solid;' align='center'>{$row["Total"]}</td></tr><tr>
+								<td style='border: 1px solid;' align='center'>{$row["Days"]}</td><td style='border: 1px solid;'>{$FirstIn}</td><td style='border: 1px solid;'>{$FirstOut}</td><td style='border: 1px solid;'></div>{$SecondIn}</td><td style='border: 1px solid;'>{$SecondOut}</td><td style='border: 1px solid;'>{$ThirdIn}</td><td style='border: 1px solid;'>{$ThirdOut}</td><td style='border: 1px solid;' align='center'>{$row["Total"]}</td></tr><tr>
 							
 							";
 							
@@ -204,18 +238,18 @@ echo "
 						             $x++;
 						}
 							$query = "SELECT * FROM `PAYSTUBS`
-						          WHERE Month='$MONTH' AND Year=$YEAR";
+						          WHERE Month='$MONTH' AND Date='$YEARMONTH'";
 						       $result=$conn->returnEmployeeQuery($query);
 					            $row = $result->fetch_assoc();
 					            echo "
 							<td colspan='4'>&nbsp;</td>
 							<td style='border: 1px solid; border-bottom: 0;' colspan='3' align='left'><b>Total Hours Worked</b></td>
-							<td style='border: 1px solid;'><b></b></td>
+							<td style='border: 1px solid;'><b>{$row["Thour"]}</b></td>
 						</tr><tr style='font-size: 1.1em;' align='center'>
 							<td colspan='4'>&nbsp;</td>
 							<td style='border: 1px solid; border-top: 0; border-right:0;' colspan='2' align='left'><b>Hourly Wage</b></td>
-							<td style='border: 1px solid; border-top: 0; border-left:0;'><b></b>{$row["Srate"]}</td>
-							<td style='border: 1px solid;'><b></b></td>
+							<td style='border: 1px solid; border-top: 0; border-left:0;'><b>{$row["Srate"]}</b></td>
+							<td style='border: 1px solid;'><b>{$row["GrossAmount"]}</b></td>
 						</tr></table>
 	
 	<br>
@@ -239,15 +273,15 @@ echo "
 	</table>
 	
 	<div class='disclaimer'>
-	 This timesheet was generated electronically by http://webservices.ulm.edu/timeclock.  
-	 It is up to the student to verify
+	 This timesheet was generated electronically by http://www.nowsavestore/timeclock.  
+	 It is up to the employee to verify
 	 the correctness of this timesheet before submitting, as errors might be present due to
 	 the nature of the Timeclock system.
 	</div>
 	</td>
 	</table>
 	";
-                         
                          	}
 }
 	?>
+	</html>

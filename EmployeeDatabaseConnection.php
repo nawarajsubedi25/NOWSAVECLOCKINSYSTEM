@@ -1,11 +1,4 @@
 <?php
-//include('session.php');
-//$var=$login_session;
-
-//$EmployeeDatabaseConnection = new EmployeeDatabaseConnection ($var);
-/*                          Database connection class 
- Whenever we need to connect database and need to execute query we simple call this class and the method
- */
 class EmployeeDatabaseConnection 
 {
     public $localhost ;

@@ -25,7 +25,7 @@ header("Location: profile.php");
 <div id="main">
 <div id="login">
 <h2>Employee Login</h2>
-<hr/>
+<hr class="hr"/>
 <span><?php echo $messagelogin; ?></span>
 <form action="login.php" method="post">
 <input type="text" name="username" id="username" placeholder="Employee ID" required/><br /><br />
@@ -40,7 +40,7 @@ header("Location: profile.php");
 	 <!-- Create div second for Setup password Form-->
 	 <div id="Create">
 	   <h2>Forgot Password</h2>
-<hr/>
+<hr class="hr"/>
 <span style="padding-left:120px;"><?php echo $messageforgot;?></span>
 <form action="setuppassword.php" method="post">
 <input type="username" name="username" id="username" placeholder="Enter your E-mail" onkeyup="showHint(this.value)" required/><br />

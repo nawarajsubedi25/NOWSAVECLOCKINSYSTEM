@@ -1,8 +1,6 @@
 <?php
-include('session.php');
-$var=$login_session;
-include 'EmployeeDatabaseConnection.php';
-$conn= new EmployeeDatabaseConnection($var);
+ob_start();
+include('hourMinuteCalculator.php');
 date_default_timezone_set("America/Chicago");
     $date_clicked = date('Y-m-d H:i:s');
 $DAYS=date('j');
@@ -10,10 +8,25 @@ $YEAR=date('Y');
 $YearToDate=date('Y-m-d');
 $time=date('Y-m-d h:i:s A');
 $MONTH=strtoupper(date('F'));
-
+$activeDATE=$activeDate; // Get active clockin date from hourMinuteCalculator
+$rowCol=$fillCol;
 /*
  Store Clock out time and date
 */
+if(!($activeDATE==""))
+{
+$query= "UPDATE `$YEAR`
+         SET `$rowCol`='$time'
+         WHERE  Date='$activeDATE'";
+         $conn->updateEmployeeDatabase($query);
+         ob_end_clean();
+         echo "You have Succsefully clock out at ".$time;
+         
+         include('Calculator.php'); // 
+}
+ /*
+
+
 $query= "SELECT * FROM `$YEAR`
          WHERE Date= '$YearToDate' AND Days='$DAYS'
          LIMIT 1";
@@ -54,7 +67,7 @@ $result=$conn->returnEmployeeQuery($query);
     /*
      Calculate total number of hour work in day
     */
-             
+           /*  
                	$query = "SELECT * FROM `$YEAR`";
     	
 						 $result=$conn->returnEmployeeQuery($query);
@@ -114,5 +127,6 @@ $result=$conn->returnEmployeeQuery($query);
 					
 						
                          	}
+                         	*/
              
    ?> 

@@ -1,6 +1,5 @@
 <?php
 include('session.php');
-include('Calculator.php');
 ?>
 
 <html>
@@ -95,6 +94,9 @@ include('Calculator.php');
 <?php
 if (isset($_POST["buttonTimesheet"]))
 {
+	$var=$login_session;
+include 'EmployeeDatabaseConnection.php';
+$conn= new EmployeeDatabaseConnection($var);
 date_default_timezone_set("America/Chicago");
 $monthYear = explode(" ", $_POST["buttonTimesheet"]);
 $MONTH= $monthYear[0]; 

@@ -1,7 +1,4 @@
 <?php
-$var=$login_session;
-include 'EmployeeDatabaseConnection.php';
-$conn= new EmployeeDatabaseConnection($var);
 date_default_timezone_set("America/Chicago");
     $date_clicked = date('Y-m-d H:i:s');
 $DAYS=date('j');

@@ -1,6 +1,5 @@
 <?php
 include('session.php');
-include('Calculator.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -112,6 +111,9 @@ setInterval(GetClock,1000);
     <legend>Monthly Timesheet</legend>
     <div class="control-group">
         <?php
+        $var=$login_session;
+include 'EmployeeDatabaseConnection.php';
+$conn= new EmployeeDatabaseConnection($var);
          date_default_timezone_set("America/Chicago");
          $date_clicked = date('Y-m-d H:i:s');
         $DAYS=date('j');
@@ -161,20 +163,17 @@ setInterval(GetClock,1000);
     </div>
       </fieldset>
  </div> 
+ </div>
  <script>
   
     $('#timesheetFieldset').coolfieldset({collapsed:true,speed:"fast"});
       $('#paystubsFieldset').coolfieldset({collapsed:true,speed:"fast"});
   </script>
   <footer>
-      <div class="container-fluid">
-      <div class="row">
       <div class="footer">
            <p>Dhaliwal Inc. <br> NOW SAVE STORES <br> 2080 Winsboro Rd Monroe LA 71203
            <br> <a href="http://www.nawarajsubedi.com">&copy;Nawaraj Subedi- Software Developer</a></p>
       </div>
-  </div>
-</div>
  </footer>
 
 </body>

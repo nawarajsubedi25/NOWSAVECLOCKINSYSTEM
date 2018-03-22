@@ -10,14 +10,12 @@ class DatabaseConnection
     public $dbname ;
     public $port ;
     public $connection;
-
     public function __construct ()
     {
-
       $this->localhost = "127.0.0.1";
       $this ->username = "nawarajsubedi25";
       $this ->password = "";
-      $this ->dbname = "REGISTRATION";
+      $this ->dbname = "COMPANY";
       $this->port = 3306;
       $this-> connectDatabase();
     }
@@ -32,17 +30,14 @@ class DatabaseConnection
         exit($output);
       }
     }
-
 // Insert values in Database 
 public function insertDatabase ($query)
 {
   mysqli_query($this->connection, $query);
 }
-
  // Execute query to retrive value from database
  public function returnQuery($query)
  {
-
   $result =mysqli_query($this->connection,$query);
  return $result;
 }

@@ -9,7 +9,6 @@ $YEAR=date('Y');
 $YearToDate=date('Y-m-d');
 $time=date('Y-m-d h:i:s A');
 $MONTH=strtoupper(date('F'));
-
 $query= "SELECT * FROM `$YEAR`
          WHERE Date= '$YearToDate' AND Days='$DAYS'
          LIMIT 1";

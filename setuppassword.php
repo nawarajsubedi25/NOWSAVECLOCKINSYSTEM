@@ -15,7 +15,6 @@
   $conn = new DatabaseConnection();
   session_start(); // Starting Session
 if (isset($_POST['submit'])) {
-
     
     $fname    = ucwords(strtolower($_POST['Fname']));
     $lname = ucwords(strtolower($_POST['Lname']));
@@ -49,8 +48,6 @@ if (isset($_POST['submit'])) {
         mail($to, $subject, $message, $headers);
         $_SESSION['messagelogin'] = "Your Password was successfully rest!!";
     header("location:index.php");
-
-
 } else {
     $_SESSION['messageforgot'] = "Make sure the Fname, Lname and Username!!";
       echo '<script type="text/javascript">',

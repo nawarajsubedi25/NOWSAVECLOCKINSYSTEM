@@ -25,8 +25,6 @@ $query= "UPDATE `$YEAR`
          include('Calculator.php'); // 
 }
  /*
-
-
 $query= "SELECT * FROM `$YEAR`
          WHERE Date= '$YearToDate' AND Days='$DAYS'
          LIMIT 1";

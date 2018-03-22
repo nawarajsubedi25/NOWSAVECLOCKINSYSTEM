@@ -1,7 +1,23 @@
+<?php
+include('session.php');
+?>
 <html>
 	<head>
-		<head>
-			<title>Bootstrap Example</title>
+    	<?php 
+		 $conn = new DatabaseConnection();
+		$query="SELECT * FROM `INFORMATION`";
+		$result = $conn->returnQuery($query);
+		$row = $result->fetch_assoc();
+		?>
+		
+		<?php 
+		include ('EmployeeDatabaseConnection.php');
+		$conn = new EmployeeDatabaseConnection($login_session);
+		$query="SELECT * FROM `INFORMATION`";
+		$result = $conn->returnEmployeeQuery($query);
+		$row1 = $result->fetch_assoc();
+		?>
+			<title> <?php echo $row1["Fname"]."&nbsp;".$row1["Lname"]; ?></title>
 			<meta charset="utf-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -52,9 +68,10 @@
 					margin-top: 0.5em;
 					background-color: white;
 				}
+				
 				.paystubday {
 					text-align: right;
-					top: 2em;
+					top: 3em;
 				}
 				.secondRow {
 					border: 1px;
@@ -96,11 +113,11 @@
 					}
 					.salarynumber {
 						text-align: right;
-						top: -1em;
+						top: -2em;
 					}
 					.paystubday {
 						text-align: right;
-						top: -2em;
+						top: -1em;
 					}
 					.earningStatement {
 						text-align: right;
@@ -159,11 +176,11 @@
 			<div class="container">
 				<div class="row firstRow">
 					<div class="col-sm-8 employeeName">
-						VIJAY-VIKRAM LLC
+						<?php echo $row["Name"];?>
 						<br>
-						5402 Cypress st
+					    	<?php echo $row["Streetaddress"];?>
 						<br>
-						West Monroe LA 71291
+							<?php echo $row["Citystate"];?>
 					</div>
 					<div class="col-sm-4 paystubday">
 						March 16, 2018
@@ -187,12 +204,14 @@
 						<div class="col-sm-2 paytotheorderof">
 							Pay to the order of
 						</div>
-						<div class="col-sm-2 employeeAddress">
-							VIJAY-VIKRAM LLC
+						<div class="col-sm-2 employeeAddress" style="text-align: center;">
+						    <div style="display: inline-block; text-align: left;">
+						    <?php echo $row1["Fname"]."&nbsp;".$row1["Lname"]; ?>
 							<br>
-							5402 Cypress st
+							<?php echo $row1["Streetaddress"];?>
 							<br>
-							West Monroe LA 71291
+							<?php echo $row1["Citystate"];?>
+						</div>
 						</div>
 					</div>
 				</div>
@@ -201,13 +220,13 @@
 						<div class="col-sm-8 companyAddress">
 							<b>Company Information</b>
 							<br>
-							VIJAY-VIKRAM LLC
+							<?php echo $row["Name"];?>
 							<br>
-							5402 Cypress st West Monroe LA 71291
+							<?php echo $row["Streetaddress"];?>	<?php echo $row["Citystate"];?>
 							<br>
-							318-396-5005
+							PHONE:	<?php echo $row["Phone"];?>
 							<br>
-							EIN:33668
+							EIN:<?php echo $row["Ein"];?>
 						</div>
 						<div class="col-sm-4 earningStatement">
 							Earning Statement

@@ -106,7 +106,7 @@ $MONTH=strtoupper(date('F'));
                                  LIMIT 1";
                          $result=$conn->returnEmployeeQuery($query);
                          if ($result->num_rows == 0) {
-    	                      $query="INSERT INTO `PAYSTUBS`(`Date`, `Month`, `Srate`, `Thour`, `GrossAmount`, `Sdudction`, ` FederalTaxWithholding`, ` SederalTaxWithholding`, `TotalPersonalDeductions`, `NetAmount`, `Start`, `Finish`, `Paydate`, `Checkno`) VALUES ('$YEARMONTH','$month','$Srate','$HOURSMINUTES',$GrossAmount,'','','','','','','','','')";
+    	                      $query="INSERT INTO `PAYSTUBS`(`Date`, `Month`, `Srate`, `Thour`, `GrossAmount`, `Sdudction`, ` FederalTaxWithholding`, ` SederalTaxWithholding`, `Healthdudction`,`TotalPersonalDeductions`, `NetAmount`, `Start`, `Finish`, `Paydate`, `Checkno`) VALUES ('$YEARMONTH','$month','$Srate','$HOURSMINUTES',$GrossAmount,'','','','','','','','','','')";
     	                     	$conn->insertEmployeeDatabase($query);
                             }
                             

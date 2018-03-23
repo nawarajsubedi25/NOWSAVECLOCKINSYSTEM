@@ -17,6 +17,12 @@ include('session.php');
 		$result = $conn->returnEmployeeQuery($query);
 		$row1 = $result->fetch_assoc();
 		?>
+		<?php 
+		$query="SELECT * FROM `PAYSTUBS`
+		        WHERE Month='MARCH'";
+		$result = $conn->returnEmployeeQuery($query);
+		$row2 = $result->fetch_assoc();
+		?>
 			<title> <?php echo $row1["Fname"]."&nbsp;".$row1["Lname"]; ?></title>
 			<meta charset="utf-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,7 +40,7 @@ include('session.php');
 				}
 
 				table.GeneratedTable td {
-				padding-left: 14px;
+				padding-left:14px;
 				}
 				table.GeneratedTable th {
 					padding: 5px 3px 5px 14px;
@@ -160,6 +166,9 @@ include('session.php');
 					.GeneratedTable th {
 						color: white !important;
 					}
+					.GeneratedTable td {
+						font-size: 12px;
+					}
 					.tableEnd th {
 						color: white !important;
 					}
@@ -183,7 +192,9 @@ include('session.php');
 							<?php echo $row["Citystate"];?>
 					</div>
 					<div class="col-sm-4 paystubday">
-						March 16, 2018
+						<?php 
+					echo date_format(date_create($row2["Paydate"]),"F d, Y");
+					?>
 					</div>
 				</div>
 			</div>
@@ -194,7 +205,7 @@ include('session.php');
 					</div>
 					<div class="col-sm-4 salarynumber">
 						<div class="amountcheck">
-							$ 50000.00
+							$ <?php echo $row2["NetAmount"];?>
 							</div class="thisisnotcheque">This is not a check
 						</div>
 					</div>
@@ -249,16 +260,22 @@ include('session.php');
 							</thead>
 							<tbody>
 								<tr class="spaceUpper">
-									<td width="25%" style="padding-left:14px;">Nawaraj Subedi
-									<br>
-									5402 Cypress st
-									<br>
-									West Monroe LA 71291</br></td>
-									<td style="text-align:center;">xxx-xx-0225</td>
-									<td style="text-align:center;">Software Developer</td>
-									<td style="text-align:center;">05/07/2018</td>
-									<td style="text-align:center;">05/07/2018</td>
-									<td style="text-align:center;">05/07/2018</td>
+									<td width="25%" style="padding-left:14px;"><?php echo $row1["Fname"]."&nbsp;".$row1["Lname"]; ?>
+							<br>
+							<?php echo $row1["Streetaddress"];?>
+							<br>
+							<?php echo $row1["Citystate"];?></td>
+									<td style="text-align:center;"><?php echo $row1["Ssn"];?></td>
+									<td style="text-align:center;"><?php echo $row1["Position"];?></td>
+									<td style="text-align:center;"><?php 
+				                	echo date_format(date_create($row2["Startdate"]),"m/d/Y");
+				                	?></td>
+									<td style="text-align:center;"><?php 
+				                	echo date_format(date_create($row2["Enddate"]),"m/d/Y");
+				                	?></td></td>
+									<td style="text-align:center;"><?php 
+				                	echo date_format(date_create($row2["Paydate"]),"m/d/Y");
+				                	?></td></td>
 								</tr>
 							</tbody>
 					</div>
@@ -268,68 +285,57 @@ include('session.php');
 						<table class="GeneratedTable">
 							<thead>
 								<tr>
-									<th>Earning</th>
-									<th style="text-align:center;">Rate</th>
-									<th style="text-align:center;">Hour</th>
+									<th width="18%">Earning</th>
+									<th width="6%"style="text-align:center;">Rate</th>
+									<th width="6%"style="text-align:center;">Hour</th>
 									<th style="text-align:center;">Current</th>
 									<th style="text-align:center;">Year to Date</th>
-									<th style="text-align:left;">Dedutction</th>
+									<th width="22%">Dedutction</th>
 									<th style="text-align:center;">Current</th>
 									<th style="text-align:center;">Year to Date</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr class="spaceUpper">
-									<td style="background-color:#e6e8ec; padding-left:14px;" >Regural Earning</td>
-									<td style="text-align:center;">25.0</td>
-									<td style="text-align:center;">80.0</td>
-									<td style="text-align:center;">2000.00</td>
-									<td style="text-align:center;">24000.00</td>
-									<td style="background-color:#e6e8ec; padding-left:14px;">Federal</td>
-									<td style="text-align:center;">36.11</td>
-									<td style="text-align:center;">14.00</td>
+									<td width="18%" style="background-color:#e6e8ec; padding-left:14px;" >Regural Earning</td>
+									<td width="6%" style="text-align:center;"><?php echo $row2["Srate"];?></td>
+									<td width="6%" style="text-align:center;"><?php echo $row2["Thour"];?></td>
+									<td style="text-align:center;"><?php echo $row2["GrossAmount"];?></td>
+									<td style="text-align:center;"><?php echo 2 * $row2["GrossAmount"];?></td>
+									<td width="22%" style="background-color:#e6e8ec;">Federal</td>
+									<td style="text-align:center;"><?php echo $row2["FederalTaxWithholding"];?></td>
+									<td style="text-align:center;"><?php echo 2 * $row2["FederalTaxWithholding"];?></td>
 								</tr>
 								<tr>
-									<td style="background-color:#e6e8ec"></td>
+									<td width="18%"style="background-color:#e6e8ec; padding-left:14px;"></td>
+									<td width="6%"></td>
+									<td width="6%"></td>
 									<td></td>
 									<td></td>
-									<td></td>
-									<td></td>
-									<td style="background-color:#e6e8ec">State</td>
-									<td style="text-align:center;">12.50</td>
-									<td style="text-align:center;">14.60</td>
-								</tr>
-								<tr>
-								<tr>
-									<td style="background-color:#e6e8ec"></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td style="background-color:#e6e8ec">Social Security</td>
-									<td style="text-align:center;">12.50</td>
-									<td style="text-align:center;">14.60</td>
-								</tr>
-								<tr>
-									<td style="background-color:#e6e8ec"></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td style="background-color:#e6e8ec">Health Insurance Tax</td>
-									<td style="text-align:center;">12.50</td>
-									<td style="text-align:center;">14.60</td>
+									<td width="22%"style="background-color:#e6e8ec">State</td>
+									<td style="text-align:center;"><?php echo $row2["StateTaxWithholding"];?></td>
+									<td style="text-align:center;"><?php echo 2 * $row2["StateTaxWithholding"];?></td>
 								</tr>
 								<tr>
 								<tr>
-									<td style="background-color:#e6e8ec;"></td>
+									<td width="18%" style="background-color:#e6e8ec; padding-left:14px;"></td>
+									<td width="6%"></td>
+									<td width="6%"></td>
 									<td></td>
 									<td></td>
+									<td width="22%" style="background-color:#e6e8ec">Social Security</td>
+									<td style="text-align:center;"><?php echo $row2["Socialdudction"];?></td>
+									<td style="text-align:center;"><?php echo 2.00 * $row2["Socialdudction"];?></td>
+								</tr>
+								<tr>
+									<td width="18%"style="background-color:#e6e8ec; padding-left:14px;"></td>
+									<td width="6%"></td>
+									<td width="6%"></td>
 									<td></td>
 									<td></td>
-									<td style="background-color:#e6e8ec">State</td>
-									<td style="text-align:center;">12.50</td>
-									<td style="text-align:center;">14.60</td>
+									<td width="22%"style="background-color:#e6e8ec">Health Insurance Tax</td>
+									<td style="text-align:center;"><?php echo $row2["Healthdudction"];?></td>
+									<td style="text-align:center;"><?php echo (float)(2.00 * $row2["Healthdudction"]);?></td>
 								</tr>
 							</tbody>
 					</div>
@@ -339,14 +345,14 @@ include('session.php');
 						<table class="GeneratedTable">
 							<thead>
 								<tr>
-									<th width="17%">Gross Earning</th>
-									<th width="6%" style="text-align:center; background-color:#e6e8ec;"></th>
-									<th width="6%" style="text-align:center; background-color:#e6e8ec;"></th>
-									<th style="text-align:center; background-color:#e6e8ec; color:black;">2000.00</th>
-									<th style="text-align:center; background-color:#e6e8ec; color:black;">24000.00</th>
-									<th width="22%"style="text-align:left;">Gross Dedutctions</th>
-									<th style="text-align:center; background-color:#e6e8ec; color:black;">5500.00</th>
-									<th style="text-align:center; background-color:#e6e8ec; color:black;">2400.00</th>
+									<th width="18%" style="padding-left:14px;">Gross Earning</th>
+									<th width="6%" style="text-align:center; background-color:#e6e8ec; color:white;"></th>
+									<th width="6%" style="text-align:center; background-color:#e6e8ec; color:white;"></th>
+									<th width="9.5%" style="text-align:center; background-color:#e6e8ec; color:black;"><?php echo $row2["GrossAmount"];?></th>
+									<th width="14.5%" style="text-align:center; background-color:#e6e8ec; color:black;"><?php echo 2 * $row2["GrossAmount"];?></th>
+									<th width="22%">Gross Dedutctions</th>
+									<th width="11.5%"style="text-align:center; background-color:#e6e8ec; color:black; padding-right:1.5em;"><?php echo $row2["TotalPersonalDeductions"];?></th>
+									<th width="12.5%"style="text-align:center; background-color:#e6e8ec; color:black; padding-right:1.5em;"><?php echo 2 * $row2["TotalPersonalDeductions"];?></th>
 								</tr>
 							</thead>
 					</div>

@@ -285,57 +285,57 @@ include('session.php');
 						<table class="GeneratedTable">
 							<thead>
 								<tr>
-									<th width="18%">Earning</th>
-									<th width="6%"style="text-align:center;">Rate</th>
-									<th width="6%"style="text-align:center;">Hour</th>
-									<th style="text-align:center;">Current</th>
-									<th style="text-align:center;">Year to Date</th>
-									<th width="22%">Dedutction</th>
-									<th style="text-align:center;">Current</th>
-									<th style="text-align:center;">Year to Date</th>
+									<th width="16%">Earning</th>
+									<th width="6%" style="text-align:center;">Rate</th>
+									<th width="6%" style="text-align:center;">Hour</th>
+									<th width="10%" style="text-align:center;">Current</th>
+									<th width="13%" style="text-align:center;">Year to Date</th>
+									<th width="21%">Dedutction</th>
+									<th width="14%" style="text-align:center;">Current</th>
+									<th width="14%"style="text-align:center;">Year to Date</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr class="spaceUpper">
-									<td width="18%" style="background-color:#e6e8ec; padding-left:14px;" >Regural Earning</td>
-									<td width="6%" style="text-align:center;"><?php echo $row2["Srate"];?></td>
-									<td width="6%" style="text-align:center;"><?php echo $row2["Thour"];?></td>
-									<td style="text-align:center;"><?php echo $row2["GrossAmount"];?></td>
-									<td style="text-align:center;"><?php echo 2 * $row2["GrossAmount"];?></td>
-									<td width="22%" style="background-color:#e6e8ec;">Federal</td>
-									<td style="text-align:center;"><?php echo $row2["FederalTaxWithholding"];?></td>
-									<td style="text-align:center;"><?php echo 2 * $row2["FederalTaxWithholding"];?></td>
+									<td width="16%" style="background-color:#e6e8ec; padding-left:14px;" >Regural Earning</td>
+									<td width="6%" style="text-align:center;"><?php echo number_format($row2["Srate"],2);?></td>
+									<td width="6%" style="text-align:center;"><?php echo number_format($row2["Thour"],2);?></td>
+									<td width="10%" style="text-align:center;"><?php echo number_format($row2["GrossAmount"],2);?></td>
+									<td width="13%" style="text-align:center;"><?php echo number_format(12.00 * $row2["GrossAmount"],2);?></td>
+									<td width="21%" style="background-color:#e6e8ec;">Federal</td>
+									<td width= "14%" style="text-align:center;"><?php echo number_format($row2["FederalTaxWithholding"],2);?></td>
+									<td width="14%" style="text-align:center;"><?php echo number_format(12 * $row2["FederalTaxWithholding"],2);?></td>
 								</tr>
 								<tr>
-									<td width="18%"style="background-color:#e6e8ec; padding-left:14px;"></td>
+									<td width="16%"style="background-color:#e6e8ec; padding-left:14px;"></td>
 									<td width="6%"></td>
 									<td width="6%"></td>
-									<td></td>
-									<td></td>
-									<td width="22%"style="background-color:#e6e8ec">State</td>
-									<td style="text-align:center;"><?php echo $row2["StateTaxWithholding"];?></td>
-									<td style="text-align:center;"><?php echo 2 * $row2["StateTaxWithholding"];?></td>
+									<td width="10%"></td>
+									<td width="13%"></td>
+									<td width="21%" style="background-color:#e6e8ec">State</td>
+									<td width="14%" style="text-align:center;"><?php echo number_format($row2["StateTaxWithholding"],2);?></td>
+									<td width="14%" style="text-align:center;"><?php echo number_format(12 * $row2["StateTaxWithholding"],2);?></td>
 								</tr>
 								<tr>
 								<tr>
-									<td width="18%" style="background-color:#e6e8ec; padding-left:14px;"></td>
+									<td width="16%" style="background-color:#e6e8ec; padding-left:14px;"></td>
 									<td width="6%"></td>
 									<td width="6%"></td>
-									<td></td>
-									<td></td>
-									<td width="22%" style="background-color:#e6e8ec">Social Security</td>
-									<td style="text-align:center;"><?php echo $row2["Socialdudction"];?></td>
-									<td style="text-align:center;"><?php echo 2.00 * $row2["Socialdudction"];?></td>
+									<td width="10%"></td>
+									<td width="13%"></td>
+									<td width="21%" style="background-color:#e6e8ec">Social Security</td>
+									<td width="14%" style="text-align:center;"><?php echo number_format($row2["Socialdudction"],2);?></td>
+									<td width="14%" style="text-align:center;"><?php echo number_format(12.00 * $row2["Socialdudction"],2);?></td>
 								</tr>
 								<tr>
-									<td width="18%"style="background-color:#e6e8ec; padding-left:14px;"></td>
+									<td width="16%"style="background-color:#e6e8ec; padding-left:14px;"></td>
 									<td width="6%"></td>
 									<td width="6%"></td>
-									<td></td>
-									<td></td>
-									<td width="22%"style="background-color:#e6e8ec">Health Insurance Tax</td>
-									<td style="text-align:center;"><?php echo $row2["Healthdudction"];?></td>
-									<td style="text-align:center;"><?php echo (float)(2.00 * $row2["Healthdudction"]);?></td>
+									<td width="10%"></td>
+									<td width="13%"></td>
+									<td width="21%"style="background-color:#e6e8ec">Health Insurance Tax</td>
+									<td width="14%"style="text-align:center;"><?php echo $row2["Healthdudction"];?></td>
+									<td width="14%"style="text-align:center;"><?php echo number_format(12.00 * $row2["Healthdudction"],2);?></td>
 								</tr>
 							</tbody>
 					</div>
@@ -345,14 +345,14 @@ include('session.php');
 						<table class="GeneratedTable">
 							<thead>
 								<tr>
-									<th width="18%" style="padding-left:14px;">Gross Earning</th>
+									<th width="16%" style="padding-left:14px;">Gross Earning</th>
 									<th width="6%" style="text-align:center; background-color:#e6e8ec; color:white;"></th>
 									<th width="6%" style="text-align:center; background-color:#e6e8ec; color:white;"></th>
-									<th width="9.5%" style="text-align:center; background-color:#e6e8ec; color:black;"><?php echo $row2["GrossAmount"];?></th>
-									<th width="14.5%" style="text-align:center; background-color:#e6e8ec; color:black;"><?php echo 2 * $row2["GrossAmount"];?></th>
-									<th width="22%">Gross Dedutctions</th>
-									<th width="11.5%"style="text-align:center; background-color:#e6e8ec; color:black; padding-right:1.5em;"><?php echo $row2["TotalPersonalDeductions"];?></th>
-									<th width="12.5%"style="text-align:center; background-color:#e6e8ec; color:black; padding-right:1.5em;"><?php echo 2 * $row2["TotalPersonalDeductions"];?></th>
+									<th width="10%" style="text-align:center; background-color:#e6e8ec; color:black;"><?php echo number_format($row2["GrossAmount"],2);?></th>
+									<th width="13%" style="text-align:center; background-color:#e6e8ec; color:black;"><?php echo number_format(12 * $row2["GrossAmount"],2);?></th>
+									<th width="21%">Gross Dedutctions</th>
+									<th width="14%"style="text-align:center; background-color:#e6e8ec; color:black;"><?php echo number_format($row2["TotalPersonalDeductions"],2);?></th>
+									<th width="14%"style="text-align:center; background-color:#e6e8ec; color:black; "><?php echo number_format(12 * $row2["TotalPersonalDeductions"],2);?></th>
 								</tr>
 							</thead>
 					</div>
@@ -363,7 +363,7 @@ include('session.php');
 							<thead>
 								<tr>
 									<th width="20%">Check No</th>
-									<th class="lastth" width="20%" style="background-color:#d5e2f8; text-align:center; color:black">#114</th>
+									<th class="lastth" width="20%" style="background-color:#d5e2f8; text-align:center; color:black">#<?php echo $row2["Checkno"];?></th>
 								</tr>
 							</thead>
 						</table>
@@ -375,7 +375,7 @@ include('session.php');
 							<thead>
 								<tr>
 									<th width="20%">Net Pay</th>
-									<th class="lastth" width="20%" style="background-color:#d5e2f8; text-align:center; color:black">$ 1123.56</th>
+									<th class="lastth" width="20%" style="background-color:#d5e2f8; text-align:center; color:black">$ <?php echo $row2["NetAmount"];?></th>
 								</tr>
 							</thead>
 						</table>
@@ -387,7 +387,7 @@ include('session.php');
 							<thead>
 								<tr>
 									<th width="20%">YTD Net Pay</th>
-									<th class="lastth" width="20%" style="background-color:#d5e2f8; text-align:center; color:black" >$ 6000.00</th>
+									<th class="lastth" width="20%" style="background-color:#d5e2f8; text-align:center; color:black" >$ <?php echo number_format(12* $row2["NetAmount"],2);?></th>
 								</tr>
 							</thead>
 						</table>

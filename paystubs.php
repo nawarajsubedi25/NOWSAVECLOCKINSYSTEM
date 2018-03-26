@@ -4,24 +4,25 @@ include('session.php');
 <html>
 	<head>
     	<?php 
+    	if (isset($_POST["buttonPaystubs"]))
+{
+	$monthYear = explode(" ", $_POST["buttonPaystubs"]);
+       $MONTH= $monthYear[0]; 
+        $YEAR= $monthYear[1];
 		 $conn = new DatabaseConnection();
 		$query="SELECT * FROM `INFORMATION`";
 		$result = $conn->returnQuery($query);
 		$row = $result->fetch_assoc();
-		?>
-		
-		<?php 
 		include ('EmployeeDatabaseConnection.php');
 		$conn = new EmployeeDatabaseConnection($login_session);
 		$query="SELECT * FROM `INFORMATION`";
 		$result = $conn->returnEmployeeQuery($query);
 		$row1 = $result->fetch_assoc();
-		?>
-		<?php 
 		$query="SELECT * FROM `PAYSTUBS`
-		        WHERE Month='MARCH'";
+		        WHERE Month='$MONTH'";
 		$result = $conn->returnEmployeeQuery($query);
 		$row2 = $result->fetch_assoc();
+}
 		?>
 			<title> <?php echo $row1["Fname"]."&nbsp;".$row1["Lname"]; ?></title>
 			<meta charset="utf-8">
@@ -113,9 +114,27 @@ include('session.php');
 					text-align: center;
 					font-weight: 400;
 				}
+				.outfit{
+					border:2px solid #eff0f1;
+					margin:0.5em 7em 2em 7em;
+				}
+				
+				.print a{
+					position:absolute;
+					border:1px solid black;
+					background-color:blue;
+					color:#fff;;
+					padding:0px 3px 0px 3px;
+					margin-left:-6em;
+				}
+				
 				@media print {
-					.noprint {
+					.print a {
 						display: none;
+					}
+					.outfit{
+						border:none;
+						margin:0em 0em 0em 0em;
 					}
 					.salarynumber {
 						text-align: right;
@@ -182,6 +201,9 @@ include('session.php');
 			</style>
 		</head>
 		<body class="background">
+			<div class="container-fluid outfit">
+				<div class="container">
+					<div class="row print"><a href='javascript:window.print();'>Print</a></div></div>
 			<div class="container">
 				<div class="row firstRow">
 					<div class="col-sm-8 employeeName">
@@ -393,5 +415,7 @@ include('session.php');
 						</table>
 					</div>
 				</div>
+				</div>
 		</body>
+		
 </html>

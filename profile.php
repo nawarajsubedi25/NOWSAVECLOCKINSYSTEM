@@ -22,6 +22,7 @@ include('session.php');
 <b id="logout"><a href="logout.php" class="logout">Log Out</a></b>
 </div>
 </div>
+<div class=" outfit">
 <div class="container">
 <div class="row">
     <div id ="demo">
@@ -153,8 +154,8 @@ $conn= new EmployeeDatabaseConnection($var);
                          		while($row = $result->fetch_array())
 						{
 						    echo "
-						     <form action='timesheet.php' method='post' target='_blank' style ='display:inline;'>
-						     <button class='buttonTimesheet' name='buttonTimesheet' value='{$row["0"]} 2018' >{$row["0"]}</button>
+						     <form action='paystubs.php' method='post' target='_blank' style ='display:inline;'>
+						     <button class='buttonPaystubs' name='buttonPaystubs' value='{$row["0"]} 2018' >{$row["0"]}</button>
 						     </form>
 						 ";
 						}
@@ -163,6 +164,7 @@ $conn= new EmployeeDatabaseConnection($var);
     </div>
       </fieldset>
  </div> 
+ </div>
  </div>
  <script>
   

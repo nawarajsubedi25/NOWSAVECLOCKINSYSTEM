@@ -7,7 +7,6 @@ $(document).ready(function () {
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-            grounp:'col-sm-4',
             userName: { 
                 validators: {
                     notEmpty: {
@@ -24,5 +23,14 @@ $(document).ready(function () {
             },
         },
     })
+    // Enable submit button all the time 
+    .on('status.field.bv', function (e, data) {
+            // $(e.target)  --> The field element
+            // data.bv      --> The BootstrapValidator instance
+            // data.field   --> The field name
+            // data.element --> The field element
+
+            data.bv.disableSubmitButtons(false);
+        });
 
 });

@@ -1,6 +1,3 @@
-<?php
-include('session.php');
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +5,6 @@ include('session.php');
 <meta charset="utf-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<link rel="stylesheet" href="css/bootstrap.min.css">
-		    	<!-- Form Validation Plugin -->
-		<script type="text/javascript" src="formvalidation/jquery-1.10.2.min.js"></script>
 			<style type="text/css" scoped>
 			.line{
 			    padding:5px 0px 5px 10px;
@@ -31,13 +26,32 @@ include('session.php');
 			    color:black;
 			}
 			.formBox{
-			    border:1px solid black;
-			    margin:1em 22em 1em 22em;
+			    -moz-box-shadow: 0px 0px 8px 2px #d1d1d1;
+	-webkit-box-shadow: 0px 0px 8px 2px #d1d1d1;
+	background: #ffffff;
+	border: 1px solid #f0f0f0;
+	box-shadow: 0px 0px 8px 2px #d1d1d1;
+	color: #777;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 6px; 
+	overflow: hidden;
+			    margin:1em 23em 1em 23em; 
 			}
 			.formTitle{
-			    background-image:url(images/redImage.png);;
-			    color:white;
-			    padding:7px 3px 7px 7px;
+			  background-color: #D21034;
+	background-image: url(images/redImage.png);
+	background-position: 50% 50%;
+	background-repeat: repeat-x;
+	border: 1px solid #b0a6a6;
+	color: #ffffff;
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 16px;
+	padding: 10px;
+	text-shadow: -1px;
+	width: 430;
 			}
               .button{
                   background-color:#928383;
@@ -48,23 +62,35 @@ include('session.php');
                   border-radius:3px;
                   height:25px;
               }
-              .button:hover{
-                  background-color:#d21539;
-              }
+              input[type=submit]:focus {
+    background:#d21034 url(images/redImage.png) 50% 50% repeat;
+    border:1px solid #dfd8d8;
+    
+                  border: none;
+                  outline:none;
+                  border-radius:3px;
+                  height:25px;
+}
+
               .inputbox{
                    height:33px;
                    border-radius:6px;
                    border:1px solid black;
                    outline:0;
-                   width:90%;
+                   width: 100%;
+                   
                    
               }
               /*
 .inputbox:valid { background-color:#f4f4f4; }
 */
 .inputbox:focus{
-     background-color:#f4f4f4;
-     border-color:blue;
+	background-color: #DCDCDC;
+	box-shadow: 0 0 2px #51cbee;
+    -moz-box-shadow: 0 0 2px #51cbee;
+    -webkit-box-shadow: 0 0 2px #51cbee;
+    border: 2px solid #51cbee;
+
 }
 sup{
     color:red;
@@ -79,14 +105,14 @@ a{
     font-style: italic;
 }
 .popover{
-  margin-top: 2em;
+
     
 }
 .glyphicon-ok-circle,.glyphicon-remove-circle,.glyphicon-remove-circle {
     display:none;
     font-size: 0px;
     line-height: 0px;
-    padding-top: 10px;
+    padding-top: 0px;
 }
 
 
@@ -115,29 +141,34 @@ a{
            
             <div class="form-group">
                 <div class=" row input">
-                    <div class="inputtext col-sm-2" align="left" style="margin:2em 2em 1em 3em;">
+                    <div class="inputtext col-sm-2"  style="margin:2em 2em 1em 2em;">
                         Username<sup
                             class="mandatory">*</sup>
                     </div>
-                    <div class="inputcontent col-sm-8"align="right" style="margin:1.75em 0em 0em 0em;">
+                    <div class="inputcontent col-sm-6"  style="margin:1.75em 1em 0em 2em;">
+                        
                         <input class="inputbox" id="inputbox" type="search" maxlength="40" autocomplete="off" name="userName" />
+                        	<div class="right-outer-addon" style="margin-top:-2em; margin-left:17em">
                         <img src="images/info.gif" Title="Enter your username." alt="Information" />
+                        </div>
                </div>
                
                </div>
                <hr style="margin:1em 2em 1em 2em; ">
                <div class=" row input">
-                    <div class="inputtext col-sm-2" align="left" style="margin:1em 2em 1em 3em;">
+                    <div class="inputtext col-sm-2" style="margin:1em 2em 1em 2em;">
                         Password<sup
                             class="mandatory">*</sup>
                     </div>
-                    <div class="inputcontent col-sm-8"align="right" style="margin:0.5em 0em 0em 0em;">
+                    <div class="inputcontent col-sm-6" style="margin:0.5em 1em 0em 2em;">
                         <input class="inputbox" id="inputbox" type="search" maxlength="40" autocomplete="off" name="password"/>
+                        <div class="right-outer-addon" style="margin-top:-2em; margin-left:17em">
                         <img src="images/info.gif" Title="Enter your password." alt="Information" />
+                        </div>
                </div>
                </div>
-               <div>
-                        <a id="ForgotPassword" tabindex="4" class="InlinePassword " href="" style="margin-left:2em;">Forgot Password?</a>
+               <div class="row input" style="margin-left:2em; margin-top:1em;">
+                        <a id="ForgotPassword" tabindex="4" class="InlinePassword" href="" >Forgot Password?</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="" class="InlinePassword" TabIndex="5">
                             First Time Administration Setup</a>
                     </div>
@@ -145,7 +176,7 @@ a{
             </div>
         </div>
         <div style="padding-left: 675px;">
-            <input type="submit"  value="Login" class="button" />
+            <input type="submit"  value="Login" id="resetButton" class="button" />
         </div>
         </form>
     </div>

@@ -117,6 +117,18 @@ include('session.php');
 				.outfit{
 					border:2px solid #eff0f1;
 					margin:0.5em 7em 2em 7em;
+					
+					 -moz-box-shadow: 0px 0px 8px 2px #d1d1d1;
+	-webkit-box-shadow: 0px 0px 8px 2px #d1d1d1;
+	background: #ffffff;
+	border: 1px solid #f0f0f0;
+	box-shadow: 0px 0px 8px 2px #d1d1d1;
+	color: #777;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 6px; 
+	overflow: hidden;
 				}
 				
 				.print a{
@@ -125,7 +137,7 @@ include('session.php');
 					background-color:blue;
 					color:#fff;;
 					padding:0px 3px 0px 3px;
-					margin-left:-6em;
+					margin-left:-5em;
 				}
 				
 				@media print {

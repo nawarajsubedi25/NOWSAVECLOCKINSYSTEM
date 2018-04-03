@@ -10,14 +10,14 @@ $(document).ready(function () {
             userName: { 
                 validators: {
                     notEmpty: {
-                        message: "What's your first name?"
+                        message: "Enter your username."
                     },
                 }
             },
             password: {
                 validators: {
                     notEmpty: {
-                        message: "What's your last name?"
+                        message: "Enter your password."
                     },
                 }
             },

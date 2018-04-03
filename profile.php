@@ -22,11 +22,9 @@ include('session.php');
 <b id="logout"><a href="logout.php" class="logout">Log Out</a></b>
 </div>
 </div>
-<div class=" outfit">
+<div class="container-fluid" id="outfit">
 <div class="container">
-<div class="row">
-    <div id ="demo">
-    </div>
+<div class="row" id ="demo">
 </div>
 </div>
 

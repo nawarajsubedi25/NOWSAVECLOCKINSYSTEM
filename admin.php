@@ -18,7 +18,6 @@
 			    margin:0em 2em 0em 1.5em;
 			}
 			.footer{
-			    margin-top:7em;
 			    color:#edf0f5;
 			    background-image:url(images/grey_wash_wall.png);;
 			}
@@ -52,6 +51,7 @@
 	padding: 10px;
 	text-shadow: -1px;
 	width: 430;
+	margin-bottom: 1em;
 			}
               .button{
                   background-color:#928383;
@@ -71,6 +71,9 @@
                   border-radius:3px;
                   height:25px;
 }
+.button:hover{
+    background-color:#272cf1;
+}
 
               .inputbox{
                    height:33px;
@@ -81,9 +84,8 @@
                    
                    
               }
-              /*
-.inputbox:valid { background-color:#f4f4f4; }
-*/
+             
+
 .inputbox:focus{
 	background-color: #DCDCDC;
 	box-shadow: 0 0 2px #51cbee;
@@ -105,14 +107,28 @@ a{
     font-style: italic;
 }
 .popover{
-
-    
+    background: #e71a5c url('images/Caution.png');
+    padding-left:25px;
+    background-repeat: no-repeat;
+    background-position:5px 5px;
+    background-size: 30px 30px;
+    color:white;
 }
 .glyphicon-ok-circle,.glyphicon-remove-circle,.glyphicon-remove-circle {
     display:none;
     font-size: 0px;
     line-height: 0px;
     padding-top: 0px;
+}
+.content {
+	background-color:#edf0f5;
+	padding-bottom:7em;
+	margin:0em 2em 0em 1.5em;
+
+}
+.programmer a
+{
+    color:white;
 }
 
 
@@ -128,7 +144,9 @@ a{
            WELCOME!
         </div>
     </div>
-    <div class="container">
+    <div class="container-fluid content">
+        
+        <div class="container">
         
         <div class="row" align="right">
             <img alt="logo" width="100px" height="100px" src="images/lock.png"/>
@@ -179,6 +197,7 @@ a{
             <input type="submit"  value="Login" id="resetButton" class="button" />
         </div>
         </form>
+        </div>
     </div>
     <div class="container-fluid mainLine">
         <div class="row footer">
@@ -187,7 +206,7 @@ a{
             <span>|</span>&nbsp;NOW SAVE STORES
             <span>|</span>&nbsp;5402 CYPRESS ST WEST MONROE, LA 71291</h5>
             </div>
-            <div class="col-sm-4">
+            <div class="programmer col-sm-4">
              <h5 style="text-align:right;"><a href="http://www.nawarajsubedi.com">&copy;Nawaraj Subedi- Software Developer</a></h5>
             </div>       
         </div>

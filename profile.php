@@ -85,13 +85,13 @@ setInterval(GetClock,1000);
 }
 </script>
 
-<div class="container">
+<div class="innercontainer">
     <div class="row">
         <div id="links">
     </div>
 </div>
 </div>
-<div class="container">
+<div class="innercontainer">
 <div class ="row">
     <button  type="button" name="click" class="btn btn-success center-block btn-lg" id="clockinn"> Clock IN</button>
 </div>
@@ -99,12 +99,12 @@ setInterval(GetClock,1000);
     <button type="button" id="clockout" class="btn btn-danger center-block btn-lg" > Clock Out</button>
 </div>
 </div>
-<div class="container">
+<div class="innercontainer">
 <div class="row">
     <hr class="profile">
     </div>
 </div>    
-    <div class="container">
+    <div class="innercontainer">
         <div class="row timesheetFieldset">
        <fieldset class="coolfieldset" id="timesheetFieldset">
     <legend>Monthly Timesheet</legend>
@@ -139,7 +139,7 @@ $conn= new EmployeeDatabaseConnection($var);
 </fieldset>
 </div>
 </div>
- <div class="container">
+ <div class="innercontainer">
         <div class="row paystubsFieldset">
  <fieldset id="paystubsFieldset" class="coolfieldset">
     <legend>Pay Stubs </legend>
@@ -169,12 +169,19 @@ $conn= new EmployeeDatabaseConnection($var);
     $('#timesheetFieldset').coolfieldset({collapsed:true,speed:"fast"});
       $('#paystubsFieldset').coolfieldset({collapsed:true,speed:"fast"});
   </script>
-  <footer>
-      <div class="footer">
-           <p>Dhaliwal Inc. <br> NOW SAVE STORES <br> 2080 Winsboro Rd Monroe LA 71203
-           <br> <a href="http://www.nawarajsubedi.com">&copy;Nawaraj Subedi- Software Developer</a></p>
-      </div>
- </footer>
+ <div class="container-fluid mainLine">
+        <div class="row footer">
+            <div class="col-sm-8">
+            <h5>DHALIWAL INC.
+            <required>|</required>&nbsp;NOW SAVE STORES
+            <required>|</required>&nbsp;5402 CYPRESS ST WEST MONROE, LA 71291</h5>
+            </div>
+            <div class="programmer col-sm-4">
+             <h5 style="text-align:right;"><a href="http://www.nawarajsubedi.com">&copy;Nawaraj Subedi- Software Developer</a></h5>
+            </div>       
+        </div>
+
+    </div>
 
 </body>
 </html>

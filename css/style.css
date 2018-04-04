@@ -176,6 +176,9 @@ margin-left: 20px;
       margin-bottom: 20px;
       width:100%;
 }
+.innercontainer{
+  margin: 0px 35px 0px 35px ;
+}
 hr.profile
 {
     height: 5px;
@@ -239,14 +242,16 @@ hr.profile
     color: white;
     font-size: 110%;
 }
-.footer {
-   width: 98%;
-   margin-left: 1em;
-   margin-top: 3em;
-   background-color: #333333;
-   color: white;
-   text-align: center;
-}
+.container-fluid.mainLine{
+			   margin: 0em 1em 0em 1em;
+			}
+			.footer{
+			    color:#edf0f5;
+			    background-image:url(../images/grey_wash_wall.png);
+			}
+			h5>required{
+			    color:black;
+			}
 #clockinn
 {
   background: #3498db;

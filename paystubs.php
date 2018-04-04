@@ -31,6 +31,9 @@ include('session.php');
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 			<style type="text/css" scoped>
+			   .innercontainer:not(.printt){
+  margin: 0px 35px 0px 35px ;
+}
 				table.GeneratedTable {
 					width: 100%;
 					background-color: #FFFFFF;
@@ -137,7 +140,7 @@ include('session.php');
 					background-color:blue;
 					color:#fff;;
 					padding:0px 3px 0px 3px;
-					margin-left:-5em;
+					margin-left:0em;
 				}
 				
 				@media print {
@@ -214,9 +217,9 @@ include('session.php');
 		</head>
 		<body class="background">
 			<div class="container-fluid outfit">
-				<div class="container">
+				<div class="innercontainer printt">
 					<div class="row print"><a href='javascript:window.print();'>Print</a></div></div>
-			<div class="container">
+			<div class="innercontainer">
 				<div class="row firstRow">
 					<div class="col-sm-8 employeeName">
 						<?php echo $row["Name"];?>
@@ -232,7 +235,7 @@ include('session.php');
 					</div>
 				</div>
 			</div>
-			<div class="container">
+			<div class="innercontainer">
 				<div class="row secondRow">
 					<div class="col-sm-8 SalaryAmount">
 						Pay One Thousand Four Hundred Fifty One And Thirty Three Cents
@@ -244,7 +247,7 @@ include('session.php');
 						</div>
 					</div>
 				</div>
-				<div class="container">
+				<div class="innercontainer">
 					<div class="row thirdRow">
 						<div class="col-sm-2 paytotheorderof">
 							Pay to the order of
@@ -260,7 +263,7 @@ include('session.php');
 						</div>
 					</div>
 				</div>
-				<div class="container">
+				<div class="innercontainer">
 					<div class="row forthRow">
 						<div class="col-sm-8 companyAddress">
 							<b>Company Information</b>
@@ -279,7 +282,7 @@ include('session.php');
 					</div>
 				</div>
 
-				<div class="container">
+				<div class="innercontainer">
 					<div class="row">
 						<table class="GeneratedTable">
 							<thead>
@@ -314,7 +317,7 @@ include('session.php');
 							</tbody>
 					</div>
 				</div>
-				<div class="container" style="margin-bottom:1em;">
+				<div class="innercontainer" style="margin-bottom:1em;">
 					<div class="row">
 						<table class="GeneratedTable">
 							<thead>
@@ -374,7 +377,7 @@ include('session.php');
 							</tbody>
 					</div>
 				</div>
-				<div class="container" style="margin-bottom:1em;">
+				<div class="innercontainer" style="margin-bottom:1em;">
 					<div class="row">
 						<table class="GeneratedTable">
 							<thead>
@@ -391,7 +394,7 @@ include('session.php');
 							</thead>
 					</div>
 				</div>
-				<div class="container printStyle" style="margin-bottom:0.5em;">
+				<div class="innercontainer printStyle" style="margin-bottom:0.5em;">
 					<div class="row">
 						<table class="tableEnd" style="margin-top:0.5em;">
 							<thead>
@@ -403,7 +406,7 @@ include('session.php');
 						</table>
 					</div>
 				</div>
-				<div class="container">
+				<div class="innercontainer">
 					<div class="row">
 						<table class="tableEnd">
 							<thead>
@@ -415,7 +418,7 @@ include('session.php');
 						</table>
 					</div>
 				</div>
-				<div class="container">
+				<div class="innercontainer">
 					<div class="row">
 						<table class="tableEnd">
 							<thead>

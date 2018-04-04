@@ -19,7 +19,7 @@
 			}
 			.footer{
 			    color:#edf0f5;
-			    background-image:url(images/grey_wash_wall.png);;
+			    background-image:url(../images/grey_wash_wall.png);
 			}
 			h5>span{
 			    color:black;

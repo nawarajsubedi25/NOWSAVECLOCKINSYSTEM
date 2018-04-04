@@ -19,7 +19,7 @@
 			}
 			.footer{
 			    color:#edf0f5;
-			    background-image:url(../images/grey_wash_wall.png);
+			    background-image:url(images/grey_wash_wall.png);
 			}
 			h5>span{
 			    color:black;
@@ -130,7 +130,9 @@ a{
 {
     color:white;
 }
-
+.innercontainer{
+    margin:0em 11em 0em 11em;
+}
 
 			</style>
 </head>
@@ -146,7 +148,9 @@ a{
     </div>
     <div class="container-fluid content">
         
-        <div class="container">
+        
+        
+        <div class="innercontainer">
         
         <div class="row" align="right">
             <img alt="logo" width="100px" height="100px" src="images/lock.png"/>
@@ -165,8 +169,8 @@ a{
                     </div>
                     <div class="inputcontent col-sm-6"  style="margin:1.75em 1em 0em 2em;">
                         
-                        <input class="inputbox" id="inputbox" type="search" maxlength="40" autocomplete="off" name="userName" />
-                        	<div class="right-outer-addon" style="margin-top:-2em; margin-left:17em">
+                        <input class="inputbox" id="inputbox" type="search" maxlength="40" autocomplete="off" name="userName" style="float:left;"/>
+                        	<div class="right-outer-addon" style="float:right; margin:0.5em -.9em 0em 0em">
                         <img src="images/info.gif" Title="Enter your username." alt="Information" />
                         </div>
                </div>
@@ -179,8 +183,8 @@ a{
                             class="mandatory">*</sup>
                     </div>
                     <div class="inputcontent col-sm-6" style="margin:0.5em 1em 0em 2em;">
-                        <input class="inputbox" id="inputbox" type="search" maxlength="40" autocomplete="off" name="password"/>
-                        <div class="right-outer-addon" style="margin-top:-2em; margin-left:17em">
+                        <input class="inputbox" id="inputbox" type="search" maxlength="40" autocomplete="off" name="password" style="float:left;"/>
+                        	<div class="right-outer-addon" style="float:right; margin:0.5em -.9em 0em 0em">
                         <img src="images/info.gif" Title="Enter your password." alt="Information" />
                         </div>
                </div>

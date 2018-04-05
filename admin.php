@@ -94,6 +94,7 @@
     border: 2px solid #51cbee;
 
 }
+.inputbox:valid { background-color:#f4f4f4; }
 sup{
     color:red;
 }
@@ -155,7 +156,7 @@ a{
         <div class="row" align="right">
             <img alt="logo" width="100px" height="100px" src="images/lock.png"/>
         </div>
-         <form id="contact_form">
+         <form action="adminVerify.php" method="post" id="contact_form">
         <div class="row formBox">
             <div class="formTitle">
                 Login to your account
@@ -169,7 +170,7 @@ a{
                     </div>
                     <div class="inputcontent col-sm-6"  style="margin:1.75em 1em 0em 2em;">
                         
-                        <input class="inputbox" id="inputbox" type="search" maxlength="40" autocomplete="off" name="userName" style="float:left;"/>
+                        <input class="inputbox" id="inputbox" type="search" maxlength="40" autocomplete="off" name="userName" style="float:left;" required/>
                         	<div class="right-outer-addon" style="float:right; margin:0.5em -.9em 0em 0em">
                         <img src="images/info.gif" Title="Enter your username." alt="Information" />
                         </div>
@@ -183,7 +184,7 @@ a{
                             class="mandatory">*</sup>
                     </div>
                     <div class="inputcontent col-sm-6" style="margin:0.5em 1em 0em 2em;">
-                        <input class="inputbox" id="inputbox" type="search" maxlength="40" autocomplete="off" name="password" style="float:left;"/>
+                        <input class="inputbox" id="inputbox" type="search" maxlength="40" autocomplete="off" name="password" style="float:left;" required/>
                         	<div class="right-outer-addon" style="float:right; margin:0.5em -.9em 0em 0em">
                         <img src="images/info.gif" Title="Enter your password." alt="Information" />
                         </div>
@@ -198,7 +199,7 @@ a{
             </div>
         </div>
         <div style="padding-left: 675px;">
-            <input type="submit"  value="Login" id="resetButton" class="button" />
+            <input type="submit" name="formSubmit" value="Login" class="button" />
         </div>
         </form>
         </div>

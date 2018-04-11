@@ -2,6 +2,7 @@
  include 'DatabaseConnection.php';
   $conn = new DatabaseConnection();
 session_start(); // Starting Session
+
 if (isset($_POST['formSubmit'])) {
     $useremail    = strtolower($_POST['userName']);
     $userpassword = $_POST['password'];
@@ -17,12 +18,14 @@ if (isset($_POST['formSubmit'])) {
     if ($result->num_rows == 1) {
        
        $_SESSION['login_user']=$useremail; // Initializing Session
-        header("location: profile.php"); // Redirecting To Other Page
+        header("location: adminDashbord.php"); // Redirecting To Other Page
         exit();
 } else {
-    $_SESSION['messagelogin'] = "Username and Password is Invalid !!";
+    $_SESSION['messagelogin'] = "We are unable to process your request. Please try your request again. If you continue to receive this message please contact to store manager.";
     header("location: admin.php");
+
     exit();
+    
 }
 }
 ?>

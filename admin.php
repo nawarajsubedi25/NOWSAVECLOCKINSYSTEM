@@ -1,3 +1,40 @@
+<?php
+include('login.php'); // Includes Login Script
+session_start();
+ 
+//Expire the session if user is inactive for 30
+//minutes or more.
+$expireAfter = 1;
+ 
+//Check to see if our "last action" session
+//variable has been set.
+if(isset($_SESSION['last_action'])){
+    
+    //Figure out how many seconds have passed
+    //since the user was last active.
+    $secondsInactive = time() - $_SESSION['last_action'];
+    
+    //Convert our minutes into seconds.
+    $expireAfterSeconds = $expireAfter * 60;
+    
+    //Check to see if they have been inactive for too long.
+    if($secondsInactive >= $expireAfterSeconds){
+        //User has been inactive for too long.
+        //Kill their session.
+        session_unset();
+        session_destroy();
+    }
+    
+}
+ 
+//Assign the current timestamp as the user's
+//latest activity
+$_SESSION['last_action'] = time();
+if(isset($_SESSION['login_user'])){
+header("Location: profile.php");
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -148,11 +185,37 @@ a{
         </div>
     </div>
     <div class="container-fluid content">
-        
-        
-        
+        <div class="container-fluid">
+            <div class="row error-message">
+                <?php
+                 if ($_SESSION['messagelogin']==null)
+                {
+                    ?>
+                 <style type="text/css">.error-message{
+display:none;
+}</style>
+<?php
+                }
+               else
+                {
+                    echo $_SESSION["messagelogin"];
+                   ?>
+                 <style type="text/css">.error-message{
+	background-color: #FFFFF2;
+	border: 1px solid #C91034;
+	font-weight: bold;
+	margin-top:2em;
+	margin-bottom: 3px;
+	padding: 5px;
+	width: 100%;
+
+}</style>
+<?php
+                }
+              ?>            
+            </div>
+        </div>
         <div class="innercontainer">
-        
         <div class="row" align="right">
             <img alt="logo" width="100px" height="100px" src="images/lock.png"/>
         </div>
@@ -171,7 +234,7 @@ a{
                     <div class="inputcontent col-sm-6"  style="margin:1.75em 1em 0em 2em;">
                         
                         <input class="inputbox" id="inputbox" type="search" maxlength="40" autocomplete="off" name="userName" style="float:left;" required/>
-                        	<div class="right-outer-addon" style="float:right; margin:0.5em -.9em 0em 0em">
+                        	<div class="right-outer-addon" style="float:right; margin:0.5em -1em 0em 0em">
                         <img src="images/info.gif" Title="Enter your username." alt="Information" />
                         </div>
                </div>
@@ -184,8 +247,8 @@ a{
                             class="mandatory">*</sup>
                     </div>
                     <div class="inputcontent col-sm-6" style="margin:0.5em 1em 0em 2em;">
-                        <input class="inputbox" id="inputbox" type="search" maxlength="40" autocomplete="off" name="password" style="float:left;" required/>
-                        	<div class="right-outer-addon" style="float:right; margin:0.5em -.9em 0em 0em">
+                        <input class="inputbox" id="inputbox"  maxlength="40" autocomplete="off" name="password" type="password" style="float:left;" required/>
+                        	<div class="right-outer-addon" style="float:right; margin:0.5em -1em 0em 0em">
                         <img src="images/info.gif" Title="Enter your password." alt="Information" />
                         </div>
                </div>

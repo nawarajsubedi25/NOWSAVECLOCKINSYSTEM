@@ -4,17 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>jQuery UI Dialog - Default functionality</title>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="css/adminDashboard.css" rel="stylesheet" type="text/css">
+  <!-- Dialogbox Javascript -->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<style>
-#timeout {
-    display: none;
-     text-align: center;
-     background-color: white;
-}
-</style>
+  <!------------------------------------------------------------------>
 <body onload="StartTimers();">
 <script type="text/javascript">
         // Set timeout variables.
@@ -72,24 +68,34 @@
     </script>
 </head>
 <!--body onload="StartTimers();" onmousemove="ResetTimers();"-->
+    <div class="innercontainer">
     <div id="timeout" title="Session Expiring">
-        <div class="SessionBox"> For Security purpose your session will end in&nbsp;<span style="font-weight:bold" id="second"></span>&nbsp;seconds. Any unsaved data will be lost. Please click
+        <div class="sessionBox"> <br/> For Security purpose your session will end in&nbsp;<span style="font-weight:bold" id="second"></span>&nbsp;seconds. Any unsaved data will be lost. Please click
           <b>Continue Session</b> to keep your current session active.
           
-          </div>
-          <br/>
-          <div style="line-height:4em; vertical-align:bottom;">
-              <button  class="btn btn-danger" onclick="ResetTimers()" value="Continue Session"> Continue Session</button>
-          </div>
           
-           
+          <br/>
+         
+          <div class="sessionBox"style="line-height:4em; vertical-align:bottom; margin-top:1em; padding-bottom:1em;">
+              <button  class="btn btn-danger continueSession" onclick="ResetTimers()" value="Continue Session"> Continue Session</button>
+          </div>
+          </div>
     </div>
-    <table id="table1" align="center" border="1" width="800" cellpadding="0" cellspacing="0">
-        <tr>
-            <td>
-                Hello World
-            </td>
-        </tr>
-    </table>
+    </div>
+    
+         <div class="container-fluid">
+             <div class="row firstRow">
+    <div class="col-sm-3">
+    <a  href="admin.php"><img alt="logo" height="30" src="images/nowsave.png" width="139" /></a>
+    </div>
+    <div class="col-sm-8">
+    <a  href="admin.php"><img alt="logo" height="30" src="images/nowsave.png" width="30" />VIJAY-VIKRAM LLC</a>
+     <a  href="admin.php"><img alt="logo" height="30" src="images/nowsave.png" width="30" />VIJAY-VIKRAM LLC</a>
+      <a  href="admin.php"><img alt="logo" height="30" src="images/nowsave.png" width="30" />nowsave20</a>
+    </div>
+    <div class="col-sm-0 logout">
+    <a  href="admin.php"><img alt="logo" height="30" src="images/shutdown.png" width="30" />Logout </a>
+    </div>
+    </div>
 </body>
 </html>

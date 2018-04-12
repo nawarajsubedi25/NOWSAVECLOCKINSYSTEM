@@ -1,0 +1,14 @@
+#timeout {
+    display: none;
+     text-align: center;
+     background-color:#faf9e4;
+}
+.sessionBox{
+    background-color:white;
+}
+
+.firstRow{
+    margin-top:2em;
+}
+.logout a{
+}

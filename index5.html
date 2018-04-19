@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>Collapsible sidebar using Bootstrap 3</title>
+
+         <!-- Bootstrap CSS CDN -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- Date range picker css-->
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+        <!-- Our Custom CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="style5.css">
+        
+  <!--- For Auto logout ---------------------------------------------->
+<body onload="--sStartTimers();">
+<script type="text/javascript">
+        // Set timeout variables.
+        var timoutWarning = 7500; // Display warning in 1Mins.
+        var timoutNow = 15000; // Timeout in 2 mins.
+        var logoutUrl = 'http://www.asp.net'; // URL to logout page.
+
+        var warningTimer;
+        var timeoutTimer;
+        var timer;
+        var second;
+        // Start timers.
+        function StartTimers() {
+            warningTimer = setTimeout("IdleWarning()", timoutWarning);
+            timeoutTimer = setTimeout("IdleTimeout()", timoutNow);
+        }
+
+        // Reset timers.
+        function ResetTimers() {
+            clearTimeout(warningTimer);
+            clearTimeout(timeoutTimer);
+            StartTimers();
+            $("#timeout").dialog('close');
+        }
+
+        // Show idle timeout warning dialog.
+        function IdleWarning() {
+              second=60;
+            $("#timeout").dialog({
+                width: "30%",
+   maxWidth: "768px",
+        close: function () { ResetTimers() },
+            }).prev(".ui-dialog-titlebar").css("background","red");
+             document.getElementById("second").innerHTML = second;
+
+  if(!timer) {
+    timer = window.setInterval(function() {
+      myFunction();
+    }, 1000);
+  }
+        }
+
+        // Logout the user.
+        function IdleTimeout() {
+            window.location = logoutUrl;
+        }
+      function myFunction() {
+     if(second < 60) {
+    document.getElementById("second").innerHTML = second;
+  }
+     if (second >0 ) {
+         second--;
+     } 
+}
+    </script>
+ <!---------------------Auto logout Script End --------------------------->
+</head>
+ <body>
+       <div class="innercontainer">
+    <div id="timeout" title="Session Expiring">
+        <div class="sessionBox"> <br/> For Security purpose your session will end in&nbsp;<span style="font-weight:bold" id="second"></span>&nbsp;seconds. Any unsaved data will be lost. Please click
+          <b>Continue Session</b> to keep your current session active.
+          
+          
+          <br/>
+         
+          <div class="sessionBox"style="line-height:4em; vertical-align:bottom; margin-top:1em; padding-bottom:1em;">
+              <button  class="btn btn-danger continueSession" onclick="ResetTimers()" value="Continue Session"> Continue Session</button>
+          </div>
+          </div>
+    </div>
+    </div>
+
+
+
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <h3> <a  href="admin.php"><img alt="logo" height="30" src="images/nowsave.png" width="139" /></a></h3>
+                    <small style="margin-left:13em;">Dashboard</small>
+                </div>
+
+                <ul class="list-unstyled components">
+                    <p>Dummy Heading</p>
+                    <li class="active">
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li><a href="#">Home 1</a></li>
+                            <li><a href="#">Home 2</a></li>
+                            <li><a href="#">Home 3</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
+                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu">
+                            <li><a href="#">Page 1</a></li>
+                            <li><a href="#">Page 2</a></li>
+                            <li><a href="#">Page 3</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Portfolio</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+
+                <ul class="list-unstyled CTAs">
+                    <li><a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a></li>
+                    <li><a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a></li>
+                </ul>
+            </nav>
+
+            <!-- Page Content Holder -->
+            <div id="content">
+
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+
+                        <div class="navbar-header">
+                            <button type="button" id="sidebarCollapse" class="navbar-btn">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </button>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#">Page</a></li>
+                                <li><a href="#">Page</a></li>
+                                <li><a href="#">Page</a></li>
+                                <li><a href="#">Page</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+               <div class="right_col">
+         <div class="col-sm-12 col-md-12 col-xs-12 main">
+              <div class="col-md-6">
+                <div class="selectEmployee">Find Employee
+                 <input class="inputbox" id="inputbox"  maxlength="40" autocomplete="off" name="password"  required/>
+            <input type="submit" name="formSubmit" value="Search" class="buttom"  onclick="searchResult()"/>
+        </div>
+        </div>
+         <div class="col-md-6">
+           <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                      <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                      <span></span> <b class="caret"></b>
+                    </div>
+          </div>
+        </div>
+      <div class="col-sm-12 col-md-12 col-xs-12 main">
+           <div class="col-md-6">
+         <div class="Filter">
+             <button id="activites" onclick="recentActivites()">Recent Activities</button>
+                    <button id="favorite" onclick="favoriteEmployee()">Favorite Employee</button>
+                    <button id="result" onclick="searchResult()">Search Result</button>
+         </div>
+                 </div>
+                 </div>
+      <div class="col-sm-12 col-md-12 col-xs-12 main">
+           <div class="col-md-6" id="recentActivites">
+         <h3>Recent Employee Activities <small>Each Employees Recent Activities</small></h3>
+         </div>
+                 </div>
+                 <div class="col-sm-12 col-md-12 col-xs-12 main">
+           <div class="col-md-6" id="favoriteEmployee" style="display:none;">
+         <h3>Favorite Employee Activities <small>Each Employees Recent Activities</small></h3>
+         </div>
+                 </div>
+           <div class="searchResultBox" id="searchResult" style="display:none;">
+          <div class="col-md-6">
+         <h3>Search Result <small>Each Employees Recent Activities</small></h3>
+         </div>
+         <div class="col-sm-12 col-md-12 col-xs-12 bd-example">
+  <div class="table-responsive">
+       <div class="panel-heading">
+                <div class="row">
+                  <div class="col col-xs-6">
+                    <h3 class="panel-title">Panel Heading</h3>
+                  </div>
+                  <div class="table-filter col-xs-6 text-right">
+                  <input type="text" id="myInput" onkeyup="myFunction()" class="search form-control" placeholder="What you looking for?">
+</div>
+<span class="counter pull-right"></span>
+                  </div>
+                </div>
+    <table class="table table-striped table-hover results">
+      <thead>
+        <tr>
+           <th><em class="fa fa-cog"></em></th>
+          <th scope="col">#</th>
+          <th scope="col">Heading</th>
+          <th scope="col">Heading</th>
+          <th scope="col">Heading</th>
+          <th scope="col">Heading</th>
+          <th scope="col">Heading</th>
+          <th scope="col">Heading</th>
+          <th scope="col">Heading</th>
+          <th scope="col">Heading</th>
+          <th scope="col">Heading</th>
+        </tr>
+    
+      </thead>
+       <tbody class="tbody" id="myTable">
+        <tr>
+            <td align="left">
+                              <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
+                              <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                            </td>
+          <th scope="row">1</th>
+           <td>Mark</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+        </tr>
+        <tr>
+            <td align="left">
+                              <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
+                              <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                            </td>
+          <th scope="row">2</th>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+        </tr>
+        <tr>
+            <td align="left">
+                              <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
+                              <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                            </td>
+          <th scope="row">3</th>
+          <td>Raj</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+        </tr>
+         <tr>
+             <td align="left">
+                              <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
+                              <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                            </td>
+          <th scope="row">4</th>
+          <td>Subedi</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+        </tr>
+         <tr>
+              <td align="left">
+                              <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
+                              <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                            </td>
+          <th scope="row">5</th>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+        </tr>
+         <tr>
+              <td align="left">
+                              <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
+                              <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                            </td>
+          <th scope="row">6</th>
+          <td>Sandip</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+        </tr>
+         <tr>
+              <td align="left">
+                              <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
+                              <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                            </td>
+          <th scope="row">7</th>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+        </tr>
+         <tr>
+          <th scope="row">8</th>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+        </tr>
+         <tr>
+              <td align="left">
+                              <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
+                              <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                            </td>
+          <th scope="row">9</th>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+        </tr>
+      </tbody>
+    </table>
+     </div>
+      <div class="col-md-12 text-center">
+      <ul class="pagination pagination-lg pager" id="myPager"></ul>
+      </div>
+  </div>
+</div>
+</div>
+                 </div>
+                 </div>
+
+
+
+
+
+        <!-- jQuery CDN -->
+         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+         <!-- Bootstrap Js CDN -->
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+         <script type="text/javascript">
+             $(document).ready(function () {
+                 $('#sidebarCollapse').on('click', function () {
+                     $('#sidebar').toggleClass('active');
+                     $(this).toggleClass('active');
+                 });
+             });
+         </script>
+         <script type="text/javascript" src="">
+function myFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+         </script>
+         
+          <!-- Include Required Prerequisites -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+ 
+<!-- Dialogbox Javascript -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <!------------------------------------------------------------------>
+  
+   <!-- Include Date Range Picker -->
+<script type="text/javascript" src="js/Datepicker.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+
+    </body>
+</html>

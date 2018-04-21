@@ -50,7 +50,7 @@ function searchResult() {
      document.getElementById('favoriteEmployee').style.display = "none";
         document.getElementById('favorite').style.background = "none";
 }
-
+/***
 // Bootstrap pagination 
 $.fn.pageMe = function(opts){
     var $this = this,
@@ -160,3 +160,4 @@ $(document).ready(function(){
   
     
 });
+*/

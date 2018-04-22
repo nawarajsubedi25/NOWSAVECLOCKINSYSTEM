@@ -160,26 +160,29 @@
                     </div>
                 </nav>
                <div class="right_col">
-         <div class="col-sm-12 col-md-12 col-xs-12 main">
-              <div class="col-md-6">
-                <div class="selectEmployee">Find Employee
-                 <input class="inputbox" id="inputbox"  maxlength="40" autocomplete="off" name="password"  required/>
-            <input type="submit" name="formSubmit" value="Search" class="buttom"  onclick="searchResult()"/>
-        </div>
-        </div>
+              <div class="row col-md-12 col-xs-12 col-sm-12 main">
+            <div class="col-md-6 form-inline">
+  <div class="form-group">
+    <label for="forEmployee" >Find Employee</label>
+    <input type="text" class="form-control" id="inputEmployee" placeholder="Raj Subedi"/>
+ 
+ <button type="submit" class="btn btn-info" onclick="searchResult()">Submit</button>
+  </div>
+   <div class="clearfix"></div>
+  </div>
          <div class="col-md-6">
-           <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                    <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
                       <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                       <span></span> <b class="caret"></b>
                     </div>
-          </div>
-        </div>
-      <div class="col-sm-12 col-md-12 col-xs-12 main">
+                  </div>
+  </div>
+      <div class="row col-sm-12 col-md-12 col-xs-12 main">
            <div class="col-md-6">
          <div class="Filter">
-             <button id="activites" onclick="recentActivites()">Recent Activities</button>
-                    <button id="favorite" onclick="favoriteEmployee()">Favorite Employee</button>
-                    <button id="result" onclick="searchResult()">Search Result</button>
+     <button id="activites" class="btn btn-default active" onclick="recentActivites()">Recent Activities</button>
+                    <button id="favorite" class="btn btn-default active" onclick="favoriteEmployee()">Favorite Employee</button>
+                    <button id="result" class="btn btn-default active" onclick="searchResult()">Search Result</button>
          </div>
                  </div>
                  </div>

@@ -156,10 +156,11 @@ a.article, a.article:hover {
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
-#content {
+#content{
     padding: 20px;
     min-height: 100vh;
     transition: all 0.3s;
+     position:relative;
 }
 
 #sidebarCollapse {
@@ -194,12 +195,12 @@ a.article, a.article:hover {
     opacity: 1;
     margin: 5px auto;
 }
-
+/*
 .form-group .form-control{
     display:inline-block;
     width: auto;
 }
-
+*/
 #inputEmployee{
     height:35px;
 }
@@ -214,20 +215,53 @@ button[type=submit]
     padding-right:1;
     margin-bottom:1em;
 }
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-55, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    position: relative;
+    min-height: 1px;
+    float: left;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.recentActivitesBox,.favoriteEmployeeBox,.searchResultBox{
+    margin-top:0em;
+}
+.footer{
+    position:absolute;
+   bottom:0;
+   width:97%;
+   height:30px;   /* Height of the footer */
+   background:#6cf;
+}
+
+#myPopover li a {
+    list-style-type: none;
+    font-size:15px;
+}
+#myPopover hr{
+    margin:0;
+    border:0;
+border-bottom:1px solid #ccc;
+}
+.popover{
+     top: 80px !important;
+   margin-left:2em;
+}
+.popover.bottom .arrow {
+    left:80% !important;
+}
+
+
+
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
 
 @media (max-width: 768px) {
-    .pull-right{
-        margin-right:8em;
-        margin-bottom:1em;
-    }
-    #content{
+    .content{
         padding:0;
     }
     #inputEmployee{
-        width:150px;
+        width:140px;
     }
     #sidebar {
         margin-left: -250px;
@@ -258,4 +292,7 @@ button[type=submit]
     }
     
  
+}
+@-ms-viewport{
+  width: device-width;
 }

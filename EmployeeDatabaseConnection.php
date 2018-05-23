@@ -8,7 +8,6 @@ class EmployeeDatabaseConnection
     public $port ;
     public $connection;
     public $sessionName;
-
     public function __construct ($sessionName)
     {
       $this->localhost = "127.0.0.1";
@@ -29,13 +28,11 @@ class EmployeeDatabaseConnection
         exit($output);
       }
     }
-
 // Insert values in Database 
 public function insertEmployeeDatabase ($query)
 {
   mysqli_query($this->connection, $query);
 }
-
 // Upadte values in Database 
 public function updateEmployeeDatabase ($query)
 {
@@ -44,7 +41,6 @@ public function updateEmployeeDatabase ($query)
  // Execute query to retrive value from database
  public function returnEmployeeQuery($query)
  {
-
   $result =mysqli_query($this->connection,$query);
  return $result;
 }

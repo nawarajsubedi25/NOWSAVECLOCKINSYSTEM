@@ -33,6 +33,7 @@ function favoriteEmployee() {
        document.getElementById('activites').style.background = "none";
      document.getElementById('searchResult').style.display = "none";
         document.getElementById('result').style.background = "none";
+         document.getElementById('addEmployee').style.display = "none";
 }
 function recentActivites() {
    document.getElementById('recentActivites').style.display = "block";
@@ -41,6 +42,7 @@ function recentActivites() {
        document.getElementById('result').style.background = "none";
      document.getElementById('favoriteEmployee').style.display = "none";
         document.getElementById('favorite').style.background = "none";
+         document.getElementById('addEmployee').style.display = "none";
 }
 function searchResult() {
    document.getElementById('searchResult').style.display = "block";
@@ -49,6 +51,13 @@ function searchResult() {
        document.getElementById('activites').style.background = "none";
      document.getElementById('favoriteEmployee').style.display = "none";
         document.getElementById('favorite').style.background = "none";
+         document.getElementById('addEmployee').style.display = "none";
+}
+function addEmployee(){
+    document.getElementById('addEmployee').style.display = "block";
+     document.getElementById('searchResult').style.display = "none";
+      document.getElementById('recentActivites').style.display = "none";
+       document.getElementById('favoriteEmployee').style.display = "none";
 }
 
  // Popover for user 

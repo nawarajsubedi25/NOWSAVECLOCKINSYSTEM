@@ -14,7 +14,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: #fafafa;
+   /* background: #fafafa;*/
 }
 
 p {
@@ -59,7 +59,7 @@ a, a:hover, a:focus {
 .wrapper {
     display: flex;
     align-items: stretch;
-    perspective: 1500px;
+  /*  perspective: 1500px; */
 }
 
 #sidebar {
@@ -293,6 +293,35 @@ border-bottom:1px solid #ccc;
     
  
 }
+/* Jquery Steps form css */
+.number{
+    border:2px solid red;
+    padding:1px;
+}
+#profileForm-t-0,#profileForm-t-1,#profileForm-t-2{
+    width:95%;
+    font-size: 16px;
+}
+
+
+.error a .number{
+    border:2px solid blue;
+    padding:1px;
+    
+}
+
+.error a {
+    color:blue;
+}
+
+.wizard > .steps .error a, .wizard > .steps .error a:hover, .wizard > .steps .error a:active {
+   	background-image: url(../images/redImage.png);
+    color: White;
+}
+#welcomeModal{
+    top:15em;
+}
+
 @-ms-viewport{
   width: device-width;
 }

@@ -1,4 +1,5 @@
 <?php
+
 date_default_timezone_set("America/Chicago");
     $date_clicked = date('Y-m-d H:i:s');
 $DAYS=date('j');
@@ -106,7 +107,8 @@ $MONTH=strtoupper(date('F'));
                                  LIMIT 1";
                          $result=$conn->returnEmployeeQuery($query);
                          if ($result->num_rows == 0) {
-    	                      $query="INSERT INTO `PAYSTUBS`(`Date`, `Month`, `Srate`, `Thour`, `GrossAmount`, `Sdudction`, ` FederalTaxWithholding`, ` SederalTaxWithholding`, `Healthdudction`,`TotalPersonalDeductions`, `NetAmount`, `Start`, `Finish`, `Paydate`, `Checkno`) VALUES ('$YEARMONTH','$month','$Srate','$HOURSMINUTES',$GrossAmount,'','','','','','','','','','')";
+    	                      $query="INSERT INTO `PAYSTUBS`(`Date`, `Month`, `Srate`, `Thour`, `GrossAmount`, `Socialdudction`, `FederalTaxWithholding`, `StateTaxWithholding`, `Healthdudction`, `TotalPersonalDeductions`, `NetAmount`, `Startdate`, `Enddate`, `Paydate`, `Checkno`) VALUES ('$YEARMONTH','$month','$Srate','$HOURSMINUTES',$GrossAmount,'','','','','','','','','','')";
+    	                    
     	                     	$conn->insertEmployeeDatabase($query);
                             }
                             

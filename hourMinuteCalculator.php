@@ -13,7 +13,7 @@ $MONTH=strtoupper(date('F'));
 
 $query="SELECT * FROM `$YEAR`";
  $result=$conn->returnEmployeeQuery($query);
-      if($result->num_rows >1)
+      if($result->num_rows >0) //litte chnage made 1 to 0 to 
       {
           while ($row=$result->fetch_array())
           {
